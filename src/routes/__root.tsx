@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 import { Navigation } from "../components/Navigation";
@@ -103,6 +104,7 @@ function RootComponent() {
       <Navigation />
       <Outlet />
       <Footer />
+      <Analytics />
       <Scripts />
     </div>
   );
