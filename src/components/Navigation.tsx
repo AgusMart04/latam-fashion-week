@@ -182,7 +182,7 @@ export function Navigation() {
                   <div className="mt-8 flex items-center gap-3">
                     <span className="gold-rule" />
                     <span className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-graphite/60">
-                      26 · 27 · 28 Sept · Corrientes, AR
+                      8 · 9 · 10 · 11 · 12 · 13 Sept · Corrientes, AR
                     </span>
                   </div>
                 </motion.div>
