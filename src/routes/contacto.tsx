@@ -8,7 +8,7 @@ export const Route = createFileRoute("/contacto")({
       {
         name: "description",
         content:
-          "Contactanos para entradas, sponsors, postulaciones o consultas generales sobre LATAMFW 2026.",
+          "Contactanos para entradas, empresas, postulaciones o consultas generales sobre LATAMFW 2026.",
       },
     ],
   }),

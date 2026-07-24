@@ -16,6 +16,7 @@ import {
   FAQ,
   Contact,
 } from "../components/sections";
+import { LatamMap } from "../components/LatamMap";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,8 +24,8 @@ export const Route = createFileRoute("/")({
       { title: "LATAMFW 2026 — Latinoamérica Fashion Week Argentina" },
       {
         name: "description",
-        content:
-          "LATAMFW 2026. Moda, cultura y negocios conectando a América Latina. 26–28 de septiembre, Corrientes, Argentina.",
+          content:
+          "LATAMFW 2026. Moda, cultura y negocios conectando a América Latina. 8–12 de septiembre, Corrientes, Argentina.",
       },
     ],
   }),
@@ -46,6 +47,7 @@ function Index() {
       <Applications />
       <SmartForm />
       <Sponsors />
+      <LatamMap />
       <Organizers />
       <FAQ />
       <Contact />

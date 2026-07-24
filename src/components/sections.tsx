@@ -19,6 +19,9 @@ import expTalks from "@/assets/exp-talks.jpg";
 import expNetworking from "@/assets/exp-networking.jpg";
 import expCulture from "@/assets/exp-culture.jpg";
 import expMedia from "@/assets/exp-media.jpg";
+import expTour from "@/assets/exp-tour.jpg";
+import expImmersive from "@/assets/exp-immersive.jpg";
+import applyExhibitors from "@/assets/apply-exhibitors.jpg";
 import whyVisitors from "@/assets/why-visitors.jpg";
 import whySponsors from "@/assets/why-sponsors.jpg";
 import cnfwLogo from "@/assets/logos/CNFW-LOGO.png";
@@ -124,7 +127,7 @@ export function Hero() {
               </p>
             </div>
             <div className="flex items-baseline gap-3 text-ivory sm:flex-col sm:items-end sm:gap-1 sm:text-right">
-              <span className="font-display text-2xl sm:text-4xl">26 · 27 · 28</span>
+              <span className="font-display text-2xl sm:text-4xl">8 · 9 · 10 · 11 · 12 · 13</span>
               <span className="text-xs uppercase tracking-[0.22em] text-ivory/80 sm:text-sm">
                 Sept 2026 — Corrientes
               </span>
@@ -144,7 +147,7 @@ export function Hero() {
               Comprar Entradas
             </a>
             <a href="#form" className="btn-ghost hidden sm:inline-flex">
-              Ser Sponsor
+              Ser Empresa
             </a>
             <a href="#postulaciones" className="btn-ghost">
               Postularse
@@ -158,7 +161,7 @@ export function Hero() {
 
 /* ---------------------------------------------------- countdown */
 
-const TARGET_DATE = new Date("2026-09-26T09:00:00-03:00").getTime();
+const TARGET_DATE = new Date("2026-09-08T09:00:00-03:00").getTime();
 
 function useCountdown() {
   const [now, setNow] = useState<number | null>(null);
@@ -245,10 +248,9 @@ export function About() {
           <Reveal delay={0.25}>
             <div className={`${!expanded ? "line-clamp-3 lg:line-clamp-none" : ""}`}>
               <p>
-                Un encuentro internacional que reúne diseñadores, casas creativas, prensa
-                especializada, buyers y referentes de la industria en un mismo escenario. Tres días
-                donde la pasarela se convierte en territorio de conversación cultural, negocios y
-                estética contemporánea.
+                Un encuentro internacional que reúne diseñadores, expositores y disertantes de la
+                industria en un mismo escenario. Cinco días donde la pasarela se convierte en
+                territorio de conversación cultural, negocios y estética contemporánea.
               </p>
               <Reveal delay={0.35}>
                 <p className="mt-8">
@@ -376,7 +378,7 @@ const EXPERIENCE = [
   },
   {
     title: "Networking",
-    desc: "Encuentros privados para prensa, industria y sponsors.",
+    desc: "Encuentros privados para prensa, industria y empresas.",
     img: expNetworking,
   },
   {
@@ -384,11 +386,11 @@ const EXPERIENCE = [
     desc: "Cobertura de nivel editorial para cada colección.",
     img: expMedia,
   },
-  { title: "Media Tour", desc: "Recorridos con prensa nacional e internacional.", img: expRunway },
+  { title: "Media Tour", desc: "Recorridos con prensa nacional e internacional.", img: expTour },
   {
     title: "Experiencias Inmersivas",
     desc: "Instalaciones sensoriales que reinterpretan la moda.",
-    img: expCulture,
+    img: expImmersive,
   },
 ];
 
@@ -520,7 +522,7 @@ const WHY = [
     img: whyVisitors,
   },
   {
-    tag: "Diseñadores",
+    tag: "Diseñadores, expositores y disertantes",
     title: "Presentar colecciones frente al mundo.",
     text: "Un escenario internacional con buyers, prensa y referentes creativos observando cada propuesta.",
     cta: "Postularme",
@@ -528,10 +530,10 @@ const WHY = [
     img: pillar2,
   },
   {
-    tag: "Sponsors",
-    title: "Asociar su marca a la nueva moda regional.",
+    tag: "Empresas",
+    title: "Asociá tu marca a un circuito internacional.",
     text: "Formar parte de uno de los principales encuentros de moda de América Latina.",
-    cta: "Ser Sponsor",
+    cta: "Ser Empresa",
     href: "#form",
     img: whySponsors,
   },
@@ -591,13 +593,12 @@ export function WhyParticipate() {
 /* ---------------------------------------------------- metrics */
 
 const METRICS = [
-  { n: 20, label: "Diseñadores" },
-  { n: 20, label: "Desfiles" },
+  { n: 10, suffix: "+", label: "Diseñadores" },
+  { n: 10, label: "Expositores" },
+  { n: 5, label: "Artistas en Vivo" },
   { n: 120, suffix: "+", label: "Profesionales" },
-  { n: 2, label: "Fashion Talks" },
-  { n: 2, label: "Shows Musicales" },
-  { n: 1200, label: "Asistentes / día" },
-  { n: 3, label: "Días" },
+  { n: 800, suffix: "+", label: "Asistentes / día" },
+  { n: 5, label: "Días" },
   { n: 0, label: "Cobertura Internacional", text: "Global" },
 ];
 
@@ -672,21 +673,39 @@ export function Metrics() {
 const DAYS = [
   {
     day: "Día 01",
-    date: "26 Sept",
-    title: "Apertura",
-    events: ["Recepción", "Opening Ceremony", "Desfiles", "Showroom"],
+    date: "8 Sept",
+    title: "Bienvenida",
+    events: ["Apertura", "Recepción", "Ceremonia de Bienvenida"],
   },
   {
     day: "Día 02",
-    date: "27 Sept",
-    title: "Industria",
-    events: ["Fashion Talks", "Runway Shows", "Networking", "Showroom"],
+    date: "9 Sept",
+    title: "Fitting",
+    events: ["Fitting de Modelos", "Preparación de Colecciones", "Showroom"],
   },
   {
     day: "Día 03",
-    date: "28 Sept",
-    title: "Cierre",
-    events: ["Fashion Talks", "Desfiles", "Networking", "Closing Ceremony"],
+    date: "10 Sept",
+    title: "Seminario",
+    events: ["Seminario de Moda y Medios", "Networking", "Showroom"],
+  },
+  {
+    day: "Día 04",
+    date: "11 Sept",
+    title: "Innovación",
+    events: ["Jornada de Finanzas e Innovación", "Networking", "Showroom"],
+  },
+  {
+    day: "Día 05",
+    date: "12 Sept",
+    title: "Desfile Oficial",
+    events: ["Desfile Oficial", "Artistas en Vivo", "Ceremonia de Clausura"],
+  },
+  {
+    day: "Día 06",
+    date: "13 Sept",
+    title: "Desfile y Cierre",
+    events: ["Desfile Final", "Ceremonia de Cierre"],
   },
 ];
 
@@ -699,7 +718,7 @@ export function Timeline() {
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="mt-8 max-w-3xl font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
-            Tres días. <span className="italic text-gold">Un ritmo.</span>
+            Cinco días. <span className="italic text-gold">Un ritmo.</span>
           </h2>
         </Reveal>
 
@@ -744,7 +763,7 @@ const TICKETS = [
   {
     name: "General",
     desc: "Acceso a desfiles y activaciones culturales.",
-    perks: ["Acceso general 3 días", "Activaciones abiertas"],
+    perks: ["Acceso general 5 días", "Activaciones abiertas"],
   },
   {
     name: "VIP",
@@ -774,8 +793,8 @@ export function Tickets() {
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="mt-8 font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
-                Tres formas de <br />
-                <span className="italic text-gold">habitar</span> la edición.
+                Se parte de esta <br />
+                <span className="italic text-gold">gran</span> edición.
               </h2>
             </Reveal>
           </div>
@@ -927,7 +946,7 @@ export function Tickets() {
           <div className="mt-16 flex flex-col items-center gap-4 border-t border-border pt-10 text-center">
             <p className="text-sm uppercase tracking-[0.28em] text-graphite">Venta oficial en</p>
             <a href={TICKET_URL} target="_blank" rel="noopener noreferrer" className="btn-outline">
-              Comprar en CentralTicket
+              CentralTicket
             </a>
           </div>
         </Reveal>
@@ -982,7 +1001,14 @@ const APPLICATIONS = [
     formValue: "shop",
   },
   {
-    tag: "Sponsors",
+    tag: "Expositores",
+    desc: "Exhibí tu marca o producto en el showroom oficial.",
+    detail: "Espacio B2B con buyers de la región y del exterior.",
+    img: applyExhibitors,
+    formValue: "exhibitor",
+  },
+  {
+    tag: "Empresas",
     desc: "Asociá tu marca a la moda latinoamericana.",
     detail: "Visibilidad internacional en cada punto de contacto del evento.",
     img: applySponsor,
@@ -1056,19 +1082,21 @@ type Purpose =
   | "stylist"
   | "photo"
   | "shop"
+  | "exhibitor"
   | "press"
   | "buyer"
   | "other";
 
 const PURPOSE_OPTIONS: { value: Purpose; label: string }[] = [
   { value: "tickets", label: "Comprar Entradas" },
-  { value: "sponsor", label: "Ser Sponsor" },
+  { value: "sponsor", label: "Ser Empresa" },
   { value: "designer", label: "Postularme como Diseñador" },
   { value: "model", label: "Postularme como Modelo" },
   { value: "makeup", label: "Postularme como Maquillador" },
   { value: "stylist", label: "Postularme como Estilista" },
   { value: "photo", label: "Postularme como Fotógrafo" },
   { value: "shop", label: "Postular mi Marca de Ropa" },
+  { value: "exhibitor", label: "Postularme como Expositor" },
   { value: "press", label: "Prensa" },
   { value: "buyer", label: "Buyer Profesional" },
   { value: "other", label: "Otro" },
@@ -1225,6 +1253,17 @@ function DynamicFields({ purpose }: { purpose: Purpose }) {
         <Field label="Instagram" name="ig" maxLength={50} />
         <Field label="Sitio web" name="website" type="url" />
         <Field label="Descripción de la marca" name="message" as="textarea" maxLength={400} />
+      </>
+    ),
+    exhibitor: (
+      <>
+        {base}
+        <Field label="Nombre de la marca / empresa" name="brand" required maxLength={100} />
+        <Field label="Categoría de producto" name="category" maxLength={80} />
+        <Field label="País" name="country" maxLength={60} />
+        <Field label="Instagram" name="ig" maxLength={50} />
+        <Field label="Sitio web" name="website" type="url" />
+        <Field label="Descripción de lo que exhibiría" name="message" as="textarea" maxLength={400} />
       </>
     ),
     press: (
@@ -1398,7 +1437,7 @@ export function SmartForm() {
 /* ---------------------------------------------------- sponsors */
 
 const SPONSOR_TIERS = [
-  { label: "Main Sponsor", count: 1 },
+  { label: "Empresa Principal", count: 1 },
   { label: "Luxury Partners", count: 3 },
   { label: "Official Partners", count: 4 },
   { label: "Media Partners", count: 5 },
@@ -1413,7 +1452,7 @@ export function Sponsors() {
     <section className="border-t border-border bg-muted/40 py-20 lg:py-36">
       <div className="mx-auto max-w-[1500px] px-6 lg:px-12">
         <Reveal>
-          <SectionLabel number="11" label="Sponsors" />
+          <SectionLabel number="11" label="Empresas" />
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="mt-8 max-w-3xl font-display text-4xl leading-tight sm:text-5xl lg:text-6xl">
@@ -1575,8 +1614,8 @@ const FAQS = [
     a: "El casting oficial se realiza a través del formulario. Necesitás portfolio, fotos actuales, medidas y experiencia previa.",
   },
   {
-    q: "¿Cómo participar como sponsor?",
-    a: "Escribinos desde el formulario seleccionando 'Ser Sponsor'. Enviamos el media kit y las opciones de participación.",
+    q: "¿Cómo participar como empresa?",
+    a: "Escribinos desde el formulario seleccionando 'Ser Empresa'. Enviamos el media kit y las opciones de participación.",
   },
   {
     q: "¿Cuándo se anunciará el lugar?",
@@ -1584,7 +1623,7 @@ const FAQS = [
   },
   {
     q: "¿Cómo contactar al equipo?",
-    a: "Vía formulario, email (latam.ar@gmail.com) o los teléfonos oficiales en Argentina y Brasil.",
+    a: "Vía formulario, email (latamfwargentina@gmail.com), Instagram (@latinoamericafashionweekarg) o los teléfonos oficiales en Argentina y Brasil.",
   },
 ];
 
@@ -1667,19 +1706,21 @@ export function Contact() {
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-6">
           {[
-            { label: "Email", value: "latam.ar@gmail.com", href: "mailto:latam.ar@gmail.com" },
-            { label: "Argentina", value: "+54 9 2645 07-5888", href: "tel:+5492645075888" },
-            { label: "Brasil", value: "+55 11 95058-4800", href: "tel:+5511950584800" },
+            { label: "Email", value: "latamfwargentina@gmail.com", href: "mailto:latamfwargentina@gmail.com", span: 3 },
+            { label: "Instagram", value: "@latinoamericafashionweekarg", href: "https://instagram.com/latinoamericafashionweekarg", span: 3 },
+            { label: "Argentina", value: "+54 9 3795 58-7617", href: "tel:+5493795587617", span: 2 },
+            { label: "Argentina 2", value: "+54 9 2645 07-5888", href: "tel:+5492645075888", span: 2 },
+            { label: "Brasil", value: "+55 11 95058-4800", href: "tel:+5511950584800", span: 2 },
           ].map((c, i) => (
-            <Reveal key={c.label} delay={i * 0.1}>
+            <Reveal key={c.label} delay={i * 0.1} className={c.span === 3 ? "lg:col-span-3" : "lg:col-span-2"}>
               <a
                 href={c.href}
                 className="group block border-t border-border pt-6 transition-colors hover:border-gold"
               >
                 <span className="eyebrow">{c.label}</span>
-                <div className="mt-4 font-display text-3xl transition-colors group-hover:text-gold lg:text-4xl">
+                <div className="mt-4 font-display text-xl transition-colors group-hover:text-gold sm:text-2xl lg:text-4xl">
                   {c.value}
                 </div>
               </a>

@@ -32,7 +32,7 @@ export function Footer() {
             <div className="mt-8 flex items-center gap-4">
               <span className="gold-rule" />
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-ivory/60">
-                26 · 27 · 28 Sept · Corrientes, AR
+                8 · 9 · 10 · 11 · 12 · 13 Sept · Corrientes, AR
               </span>
             </div>
           </div>
@@ -55,7 +55,7 @@ export function Footer() {
               <ul className="mt-6 space-y-3 text-sm">
                 <li>
                   <a
-                    href="https://www.instagram.com/latinoamericafashionweek/"
+                    href="https://www.instagram.com/latinoamericafashionweekarg/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="link-underline text-ivory/85"
@@ -90,7 +90,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-ivory/15 pt-8 text-xs uppercase tracking-[0.24em] text-ivory/50 sm:flex-row sm:items-center">
           <div>© {year} LATAMFW. Todos los derechos reservados.</div>
-          <div>latam.ar@gmail.com</div>
+          <div>latamfwargentina@gmail.com</div>
         </div>
       </div>
     </footer>
