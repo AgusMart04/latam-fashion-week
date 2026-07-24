@@ -718,7 +718,7 @@ export function Timeline() {
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="mt-8 max-w-3xl font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
-            Cinco días. <span className="italic text-gold">Un ritmo.</span>
+            Seis días. <span className="italic text-gold">Un ritmo.</span>
           </h2>
         </Reveal>
 
@@ -763,7 +763,7 @@ const TICKETS = [
   {
     name: "General",
     desc: "Acceso a desfiles y activaciones culturales.",
-    perks: ["Acceso general 5 días", "Activaciones abiertas"],
+    perks: ["Acceso general 6 días", "Activaciones abiertas"],
   },
   {
     name: "VIP",
@@ -1333,7 +1333,7 @@ export function SmartForm() {
               <h2 className="mt-8 font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
                 Un solo <br />
                 <span className="italic text-gold">formulario</span>. <br />
-                Nueve caminos.
+                Varios caminos.
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
