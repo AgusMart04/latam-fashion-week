@@ -7,7 +7,7 @@ export const Route = createFileRoute("/entradas")({
       { title: "Entradas — LATAMFW 2026" },
       {
         name: "description",
-        content: "Conocé las categorías de entradas para LATAMFW 2026: General, VIP y Front Row.",
+        content: "Conoce las categorías de entradas para LATAMFW 2026: General, VIP y Front Row.",
       },
     ],
   }),

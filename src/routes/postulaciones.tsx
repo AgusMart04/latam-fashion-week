@@ -7,7 +7,7 @@ export const Route = createFileRoute("/postulaciones")({
       { title: "Postulaciones — LATAMFW 2026" },
       {
         name: "description",
-        content: "Postulá para LATAMFW 2026: diseñadores, modelos, maquilladores y estilistas.",
+        content: "Postula para LATAMFW 2026: diseñadores, modelos, maquilladores y estilistas.",
       },
     ],
   }),

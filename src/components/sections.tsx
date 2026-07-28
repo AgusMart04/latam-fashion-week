@@ -594,7 +594,7 @@ const WHY = [
   },
   {
     tag: "Empresas",
-    title: "Asociá tu marca a un circuito internacional.",
+    title: "Asocia tu marca a un circuito internacional.",
     text: "Formar parte de uno de los principales encuentros de moda de América Latina.",
     cta: "Ser Empresa",
     href: "#form",
@@ -864,7 +864,7 @@ export function Tickets() {
           <div className="text-graphite lg:col-span-6 lg:col-start-7 lg:pt-20">
             <Reveal delay={0.15}>
               <p className="text-lg leading-relaxed">
-                Las categorías estarán disponibles próximamente. Registrate ahora y sé el primero en
+                Las categorías estarán disponibles próximamente. Regístrate ahora y sé el primero en
                 acceder al calendario de venta y beneficios de pre-lanzamiento.
               </p>
             </Reveal>
@@ -1023,14 +1023,14 @@ export function Tickets() {
 const APPLICATIONS = [
   {
     tag: "Diseñadores",
-    desc: "Presentá tu colección frente a buyers, prensa y casas internacionales.",
-    detail: "Colecciones seleccionadas por curaduría. Recibí visibilidad regional y global.",
+    desc: "Presenta tu colección frente a buyers, prensa y casas internacionales.",
+    detail: "Colecciones seleccionadas por curaduría. Obtén visibilidad regional y global.",
     img: applyDesigner,
     formValue: "designer",
   },
   {
     tag: "Modelos",
-    desc: "Formá parte del casting oficial de LATAMFW.",
+    desc: "Forma parte del casting oficial de LATAMFW.",
     detail: "Casting internacional con dirección artística premium.",
     img: applyModel,
     formValue: "model",
@@ -1038,41 +1038,41 @@ const APPLICATIONS = [
   {
     tag: "Maquilladores",
     desc: "Sé parte del equipo backstage de la edición.",
-    detail: "Trabajá junto a directores creativos y equipos internacionales.",
+    detail: "Trabaja junto a directores creativos y equipos internacionales.",
     img: applyMakeup,
     formValue: "makeup",
   },
   {
     tag: "Estilistas",
-    desc: "Aportá tu mirada al styling de la pasarela.",
+    desc: "Aporta tu mirada al styling de la pasarela.",
     detail: "Coordinación con diseñadores y dirección artística.",
     img: applyStylist,
     formValue: "stylist",
   },
   {
     tag: "Fotógrafos y Videógrafos",
-    desc: "Capturá la esencia de cada desfile y activación.",
+    desc: "Captura la esencia de cada desfile y activación.",
     detail: "Cobertura editorial con acceso backstage y vestuario.",
     img: applyPhoto,
     formValue: "photo",
   },
   {
     tag: "Marcas de Ropa",
-    desc: "Exhibí y vendé tu marca en el showroom oficial.",
+    desc: "Exhibe y vende tu marca en el showroom oficial.",
     detail: "Espacio curado con buyers nacionales e internacionales.",
     img: applyShop,
     formValue: "shop",
   },
   {
     tag: "Expositores",
-    desc: "Exhibí tu marca o producto en el showroom oficial.",
+    desc: "Exhibe tu marca o producto en el showroom oficial.",
     detail: "Espacio B2B con buyers de la región y del exterior.",
     img: applyExhibitors,
     formValue: "exhibitor",
   },
   {
     tag: "Empresas",
-    desc: "Asociá tu marca a la moda latinoamericana.",
+    desc: "Asocia tu marca a la moda latinoamericana.",
     detail: "Visibilidad internacional en cada punto de contacto del evento.",
     img: applySponsor,
     formValue: "sponsor",
@@ -1120,7 +1120,7 @@ export function Applications() {
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="mt-8 max-w-4xl font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
-            Sumate a la edición <span className="italic text-gold">2026</span>.
+            Súmate a la edición <span className="italic text-gold">2026</span>.
           </h2>
         </Reveal>
 
@@ -1559,7 +1559,7 @@ export function SmartForm() {
             </Reveal>
             <Reveal delay={0.2}>
               <p className="mt-8 text-graphite">
-                Contanos sobre qué querés comunicarte y adaptamos los campos a tu perfil. Cada
+                Cuéntanos sobre qué desea comunicarse y adaptamos los campos a tu perfil. Cada
                 mensaje llega directamente al equipo de LATAMFW.
               </p>
             </Reveal>
@@ -1569,7 +1569,7 @@ export function SmartForm() {
             <Reveal delay={0.15}>
               <form onSubmit={handleSubmit} className="space-y-10">
                 <fieldset className="space-y-4">
-                  <legend className="eyebrow mb-4">¿Sobre qué querés comunicarte?</legend>
+                  <legend className="eyebrow mb-4">¿Sobre qué desea comunicarse?</legend>
                   <div className="flex flex-wrap gap-2">
                     {PURPOSE_OPTIONS.map((o) => {
                       const active = purpose === o.value;
@@ -1662,7 +1662,7 @@ export function SmartForm() {
                     className="space-y-6 border-t border-red-400 pt-6"
                   >
                     <p className="font-display text-2xl italic text-red-600">
-                      Hubo un error al enviar. Intentá de nuevo o contactanos por email.
+                      Hubo un error al enviar. Intenta de nuevo o contáctanos por email.
                     </p>
                     <button
                       type="button"
@@ -1894,23 +1894,23 @@ export function Collaborators() {
 const FAQS = [
   {
     q: "¿Cómo compro entradas?",
-    a: "Las entradas estarán disponibles próximamente en CentralTicket. Registrate en el formulario para recibir el aviso de apertura de venta.",
+    a: "Las entradas estarán disponibles próximamente en CentralTicket. Regístrate en el formulario para recibir el aviso de apertura de venta.",
   },
   {
     q: "¿Cómo postulo como diseñador?",
-    a: "Ingresá al formulario inteligente y seleccioná 'Postularme como Diseñador'. La curaduría revisa cada propuesta y responde por email.",
+    a: "Ingresa al formulario inteligente y selecciona 'Postularme como Diseñador'. La curaduría revisa cada propuesta y responde por email.",
   },
   {
     q: "¿Cómo postulo como modelo?",
-    a: "El casting oficial se realiza a través del formulario. Necesitás portfolio, fotos actuales, medidas y experiencia previa.",
+    a: "El casting oficial se realiza a través del formulario. Necesitas portfolio, fotos actuales, medidas y experiencia previa.",
   },
   {
     q: "¿Cómo participar como empresa?",
-    a: "Escribinos desde el formulario seleccionando 'Ser Empresa'. Enviamos el media kit y las opciones de participación.",
+    a: "Escríbenos desde el formulario seleccionando 'Ser Empresa'. Enviamos el media kit y las opciones de participación.",
   },
   {
     q: "¿Cuándo se anunciará el lugar?",
-    a: "La sede oficial en Corrientes será anunciada próximamente. Suscribite para recibir la noticia de primera mano.",
+    a: "La sede oficial en Corrientes será anunciada próximamente. Suscríbete para recibir la noticia de primera mano.",
   },
   {
     q: "¿Cómo contactar al equipo?",

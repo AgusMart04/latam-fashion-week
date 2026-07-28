@@ -8,7 +8,7 @@ export const Route = createFileRoute("/evento")({
       {
         name: "description",
         content:
-          "Descubrí el evento LATAMFW 2026: cuenta regresiva, sobre el evento y los tres pilares que sostienen la edición.",
+          "Descubre el evento LATAMFW 2026: cuenta regresiva, sobre el evento y los tres pilares que sostienen la edición.",
       },
     ],
   }),
