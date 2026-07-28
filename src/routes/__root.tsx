@@ -66,13 +66,13 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "LATAMFW 2026. Moda, cultura y negocios conectando a América Latina. 26–28 de septiembre, Corrientes, Argentina.",
+          "LATAMFW 2026. Moda, cultura y negocios conectando a América Latina. 8–13 de septiembre, Corrientes, Argentina.",
       },
       { property: "og:title", content: "LATAMFW 2026 — Latinoamérica Fashion Week Argentina" },
       {
         property: "og:description",
         content:
-          "Tres días de desfiles, showroom, fashion talks y networking internacional en Corrientes, Argentina.",
+          "Seis días de desfiles, showroom, jornadas educativas y networking internacional en Corrientes, Argentina.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "LATAMFW" },

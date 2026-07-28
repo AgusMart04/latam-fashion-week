@@ -113,7 +113,7 @@ export function LatamMap() {
 
       <div className="mx-auto max-w-[1500px] px-6 lg:px-12">
         <Reveal>
-          <SectionLabel number="08" label="Ubicaciones" />
+          <SectionLabel number="15" label="Ubicaciones" />
         </Reveal>
         <Reveal delay={0.1}>
           <div className="mt-8 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
