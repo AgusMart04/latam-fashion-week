@@ -13,6 +13,7 @@ import {
   SmartForm,
   Sponsors,
   Organizers,
+  Collaborators,
   FAQ,
   Contact,
 } from "../components/sections";
@@ -49,6 +50,7 @@ function Index() {
       <Sponsors />
       <LatamMap />
       <Organizers />
+      <Collaborators />
       <FAQ />
       <Contact />
     </main>

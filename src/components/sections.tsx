@@ -27,6 +27,11 @@ import whySponsors from "@/assets/why-sponsors.jpg";
 import cnfwLogo from "@/assets/logos/CNFW-LOGO.png";
 import sambrizziLogo from "@/assets/logos/SAMBRIZZI-LOGO.png";
 import conamLogo from "@/assets/logos/CONAM-LOGO.png";
+import agustinWebLogo from "@/assets/logos/mi-logo.png";
+import fundacionIntegrarLogo from "@/assets/logos/fundacion-integrar.png";
+import elCirculoLogo from "@/assets/logos/el-circulo.png";
+import guajoLogo from "@/assets/logos/guajo.png";
+import centralticketLogo from "@/assets/logos/centralticket.png";
 
 /* ---------------------------------------------------- helpers */
 
@@ -127,7 +132,7 @@ export function Hero() {
               </p>
             </div>
             <div className="flex items-baseline gap-3 text-ivory sm:flex-col sm:items-end sm:gap-1 sm:text-right">
-              <span className="font-display text-2xl sm:text-4xl">8 · 9 · 10 · 11 · 12 · 13</span>
+              <span className="whitespace-nowrap font-display text-xl sm:text-4xl">8 · 9 · 10 · 11 · 12 · 13</span>
               <span className="text-xs uppercase tracking-[0.22em] text-ivory/80 sm:text-sm">
                 Sept 2026 — Corrientes
               </span>
@@ -141,7 +146,7 @@ export function Hero() {
             className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8"
           >
             <a
-              href="#entradas"
+              href="/#entradas"
               className="btn-primary bg-ivory text-carbon border-ivory hover:bg-gold hover:border-gold"
             >
               Comprar Entradas
@@ -249,7 +254,7 @@ export function About() {
             <div className={`${!expanded ? "line-clamp-3 lg:line-clamp-none" : ""}`}>
               <p>
                 Un encuentro internacional que reúne diseñadores, expositores y disertantes de la
-                industria en un mismo escenario. Cinco días donde la pasarela se convierte en
+                industria en un mismo escenario. Seis días donde la pasarela se convierte en
                 territorio de conversación cultural, negocios y estética contemporánea.
               </p>
               <Reveal delay={0.35}>
@@ -633,7 +638,7 @@ export function WhyParticipate() {
                   <h3 className="mt-4 font-display text-3xl leading-tight text-ivory">{w.title}</h3>
                   <p className="mt-4 text-ivory/70">{w.text}</p>
                   <a
-                    href={w.href}
+                    href={w.href === "#form" && typeof window !== "undefined" && window.location.pathname !== "/" ? "/#form" : w.href}
                     className="link-underline mt-auto inline-flex self-start pt-6 text-xs uppercase tracking-[0.28em] text-gold"
                   >
                     {w.cta} →
@@ -1047,7 +1052,7 @@ const APPLICATIONS = [
   {
     tag: "Fotógrafos y Videógrafos",
     desc: "Capturá la esencia de cada desfile y activación.",
-    detail: "Cobertura editorial con acceso backstage y backstage.",
+    detail: "Cobertura editorial con acceso backstage y vestuario.",
     img: applyPhoto,
     formValue: "photo",
   },
@@ -1075,6 +1080,7 @@ const APPLICATIONS = [
 ];
 
 function ApplicationCard({ a, index }: { a: (typeof APPLICATIONS)[number]; index: number }) {
+  const isPostulaciones = typeof window !== "undefined" && window.location.pathname === "/postulaciones";
   return (
     <Reveal delay={index * 0.1} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]">
       <article className="group relative overflow-hidden bg-carbon">
@@ -1094,7 +1100,7 @@ function ApplicationCard({ a, index }: { a: (typeof APPLICATIONS)[number]; index
             {a.detail}
           </p>
           <a
-            href="#form"
+            href={isPostulaciones ? "#form" : "/#form"}
             className="link-underline mt-5 inline-flex text-xs uppercase tracking-[0.28em] text-gold animate-pulse-gold lg:animate-none"
           >
             Postularme →
@@ -1212,13 +1218,42 @@ function Field({
   );
 }
 
-function DynamicFields({ purpose }: { purpose: Purpose }) {
+function DynamicFields({
+  purpose,
+  onContractFile,
+  onFormFile,
+  contractFile,
+  formFile,
+  contractAccepted,
+  onContractAccepted,
+}: {
+  purpose: Purpose;
+  onContractFile?: (f: File | null) => void;
+  onFormFile?: (f: File | null) => void;
+  contractFile?: File | null;
+  formFile?: File | null;
+  contractAccepted?: boolean;
+  onContractAccepted?: (v: boolean) => void;
+}) {
   const base = (
     <>
       <Field label="Nombre completo" name="name" required />
       <Field label="Email" name="email" type="email" required />
     </>
   );
+
+  const ALLOWED_TYPES = [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ];
+  const MAX_SIZE = 10 * 1024 * 1024;
+
+  function validateFile(file: File): string | null {
+    if (!ALLOWED_TYPES.includes(file.type)) return "Solo se aceptan archivos PDF o DOCX";
+    if (file.size > MAX_SIZE) return "El archivo no puede superar 10MB";
+    return null;
+  }
 
   const map: Record<Exclude<Purpose, "">, ReactNode> = {
     tickets: (
@@ -1274,6 +1309,101 @@ function DynamicFields({ purpose }: { purpose: Purpose }) {
         <Field label="Instagram" name="ig" maxLength={50} />
         <Field label="Portfolio (URL)" name="portfolio" type="url" />
         <Field label="Experiencia" name="exp" as="textarea" maxLength={300} />
+
+        <div className="sm:col-span-2 border-t border-border pt-8 mt-4 space-y-6">
+          <div>
+            <div className="eyebrow mb-3">Documentos requeridos</div>
+            <p className="text-sm text-graphite leading-relaxed">
+              Para completar tu postulación, descargá los siguientes documentos, leelos con atención,
+              completalos, firmalos y subilos completados.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <a
+              href="/docs/modelos/CONTRATO DE CONFIDENCIALIDAD MODELOS.docx"
+              download
+              className="inline-flex items-center gap-2 border border-border px-4 py-3 text-[0.7rem] uppercase tracking-[0.2em] text-carbon hover:border-carbon transition-colors"
+            >
+              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              Descargar Contrato de Confidencialidad
+            </a>
+            <a
+              href="/docs/modelos/FORMULARIO + FICHA MEDICA LATAMFW.docx"
+              download
+              className="inline-flex items-center gap-2 border border-border px-4 py-3 text-[0.7rem] uppercase tracking-[0.2em] text-carbon hover:border-carbon transition-colors"
+            >
+              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              Descargar Formulario + Ficha Médica
+            </a>
+          </div>
+
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              name="contractAccepted"
+              checked={contractAccepted || false}
+              onChange={(e) => onContractAccepted?.(e.target.checked)}
+              required
+              className="mt-1 h-4 w-4 accent-gold"
+            />
+            <span className="text-sm text-graphite">
+              Leí y acepto el <strong className="text-carbon">contrato de confidencialidad</strong>.
+            </span>
+          </label>
+
+          <div>
+            <label className="eyebrow mb-2 block">
+              Contrato de Confidencialidad firmado *
+            </label>
+            <input
+              type="file"
+              name="contractFile"
+              accept=".pdf,.doc,.docx"
+              required
+              onChange={(e) => {
+                const file = e.target.files?.[0] ?? null;
+                if (file) {
+                  const err = validateFile(file);
+                  if (err) { alert(err); e.target.value = ""; return; }
+                }
+                onContractFile?.(file);
+              }}
+              className="w-full text-sm text-graphite file:mr-4 file:py-2 file:px-4 file:border file:border-border file:text-[0.7rem] file:uppercase file:tracking-[0.2em] file:text-carbon file:hover:border-carbon file:transition-colors file:bg-transparent"
+            />
+            {contractFile && (
+              <span className="mt-1 block text-xs text-graphite">{contractFile.name}</span>
+            )}
+          </div>
+
+          <div>
+            <label className="eyebrow mb-2 block">
+              Formulario + Ficha Médica completado *
+            </label>
+            <input
+              type="file"
+              name="formFile"
+              accept=".pdf,.doc,.docx"
+              required
+              onChange={(e) => {
+                const file = e.target.files?.[0] ?? null;
+                if (file) {
+                  const err = validateFile(file);
+                  if (err) { alert(err); e.target.value = ""; return; }
+                }
+                onFormFile?.(file);
+              }}
+              className="w-full text-sm text-graphite file:mr-4 file:py-2 file:px-4 file:border file:border-border file:text-[0.7rem] file:uppercase file:tracking-[0.2em] file:text-carbon file:hover:border-carbon file:transition-colors file:bg-transparent"
+            />
+            {formFile && (
+              <span className="mt-1 block text-xs text-graphite">{formFile.name}</span>
+            )}
+          </div>
+        </div>
       </>
     ),
     makeup: (
@@ -1357,11 +1487,34 @@ export function SmartForm() {
   const [purpose, setPurpose] = useState<Purpose>("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
+  const [contractFile, setContractFile] = useState<File | null>(null);
+  const [formFile, setFormFile] = useState<File | null>(null);
+  const [contractAccepted, setContractAccepted] = useState(false);
+
+  useEffect(() => {
+    setContractFile(null);
+    setFormFile(null);
+    setContractAccepted(false);
+    setError(false);
+  }, [purpose]);
 
   const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbyzkr_-W5K7Ep_EW5gxRTMuyVVFJmiD3aVar6k3PE8wDquhaRg7-W5t68hQRXErE-I3/exec";
+    "https://script.google.com/macros/s/AKfycbwVcU5dCxgMl9oCF575KXgs4V7NXgeHIE22QJVC-BxStdbH8kAnzN5u_EZ9eLrfHwfL/exec";
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result as string;
+        resolve(result.split(",")[1] || "");
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
@@ -1369,14 +1522,25 @@ export function SmartForm() {
     data.purposeLabel = label;
     setSubmitting(true);
 
-    fetch(SCRIPT_URL, {
-      method: "POST",
-      body: JSON.stringify(data),
-      mode: "no-cors",
-    })
-      .then(() => setSubmitted(true))
-      .catch(() => setSubmitted(true))
-      .finally(() => setSubmitting(false));
+    try {
+      if (purpose === "model") {
+        if (contractFile) data.contractFileBase64 = await fileToBase64(contractFile);
+        data.contractFileName = contractFile?.name || "";
+        if (formFile) data.formFileBase64 = await fileToBase64(formFile);
+        data.formFileName = formFile?.name || "";
+      }
+
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        mode: "no-cors",
+      });
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -1439,7 +1603,15 @@ export function SmartForm() {
                       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                       className="grid gap-8 sm:grid-cols-2"
                     >
-                      <DynamicFields purpose={purpose} />
+                      <DynamicFields
+                        purpose={purpose}
+                        onContractFile={setContractFile}
+                        onFormFile={setFormFile}
+                        contractFile={contractFile}
+                        formFile={formFile}
+                        contractAccepted={contractAccepted}
+                        onContractAccepted={setContractAccepted}
+                      />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -1480,6 +1652,28 @@ export function SmartForm() {
                       className="text-xs uppercase tracking-[0.2em] text-gold underline-offset-4 hover:underline"
                     >
                       Enviar otro mensaje
+                    </button>
+                  </motion.div>
+                )}
+
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="space-y-6 border-t border-red-400 pt-6"
+                  >
+                    <p className="font-display text-2xl italic text-red-600">
+                      Hubo un error al enviar. Intentá de nuevo o contactanos por email.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setError(false);
+                        setPurpose("");
+                      }}
+                      className="text-xs uppercase tracking-[0.2em] text-gold underline-offset-4 hover:underline"
+                    >
+                      Reintentar
                     </button>
                   </motion.div>
                 )}
@@ -1651,6 +1845,46 @@ export function Organizers() {
             </div>
           </div>
         </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------------------------------------------- collaborators */
+
+export function Collaborators() {
+  const collaborators = [
+    { name: "Agustin Web Studio", role: "Desarrollo Web y Tecnología", logo: agustinWebLogo },
+    { name: "Fundación Integrar", role: "Inclusión y Responsabilidad Social", logo: fundacionIntegrarLogo },
+    { name: "El Círculo", role: "Agencia de Modelos", logo: elCirculoLogo },
+    { name: "Guajo", role: "Sede Oficial del Evento", logo: guajoLogo },
+    { name: "CentralTicket", role: "Ticketera Oficial", logo: centralticketLogo },
+  ];
+  return (
+    <section className="pt-0 pb-12 lg:pt-2 lg:pb-20">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+        <Reveal>
+          <div className="flex items-center gap-4">
+            <span className="h-px flex-1 bg-border" />
+            <span className="eyebrow text-graphite/60">Colaboradores</span>
+            <span className="h-px flex-1 bg-border" />
+          </div>
+        </Reveal>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {collaborators.map((c, i) => (
+            <Reveal key={c.name} delay={i * 0.08}>
+              <div className="border border-border bg-background p-6 text-center transition-colors hover:border-gold/40">
+                <div className="flex h-16 items-center justify-center">
+                  <img src={c.logo} alt={c.name} className="max-h-16 w-auto object-contain" />
+                </div>
+                <div className="mt-4 text-xs font-medium uppercase tracking-wider text-carbon">
+                  {c.name}
+                </div>
+                <div className="mt-1 text-[11px] text-graphite/70">{c.role}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
