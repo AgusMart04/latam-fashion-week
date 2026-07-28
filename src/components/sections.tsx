@@ -1314,8 +1314,7 @@ function DynamicFields({
           <div>
             <div className="eyebrow mb-3">Documentos requeridos</div>
             <p className="text-sm text-graphite leading-relaxed">
-              Para completar tu postulación, descargá los siguientes documentos, leelos con atención,
-              completalos, firmalos y subilos completados.
+              Para completar tu postulación es necesario descargar los siguientes documentos, completarlos y subirlos firmados.
             </p>
           </div>
 
