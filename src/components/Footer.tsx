@@ -4,6 +4,11 @@ import latamLogo from "@/assets/logos/LATAMFW-LOGO-01.png";
 import cnfwLogo from "@/assets/logos/CNFW-LOGO.png";
 import sambrizziLogo from "@/assets/logos/SAMBRIZZI-LOGO.png";
 import conamLogo from "@/assets/logos/CONAM-LOGO.png";
+import agustinWebLogo from "@/assets/logos/mi-logo.png";
+import fundacionIntegrarLogo from "@/assets/logos/fundacion-integrar.png";
+import elCirculoLogo from "@/assets/logos/el-circulo.png";
+import guajoLogo from "@/assets/logos/guajo.png";
+import centralticketLogo from "@/assets/logos/centralticket.png";
 
 const NAV_LINKS = [
   { to: "/evento", label: "Evento" },
@@ -102,6 +107,36 @@ export function Footer() {
                   src={conamLogo}
                   alt="CONAM"
                   className="h-10 w-auto object-contain brightness-0 invert opacity-70"
+                />
+              </div>
+            </div>
+            <div>
+              <div className="eyebrow text-ivory/60">Colaboradores</div>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <img
+                  src={agustinWebLogo}
+                  alt="Agustin Web Studio"
+                  className="h-8 w-auto object-contain brightness-0 invert opacity-60"
+                />
+                <img
+                  src={fundacionIntegrarLogo}
+                  alt="Fundación Integrar"
+                  className="h-8 w-auto object-contain brightness-0 invert opacity-60"
+                />
+                <img
+                  src={elCirculoLogo}
+                  alt="El Círculo"
+                  className="h-8 w-auto object-contain brightness-0 invert opacity-60"
+                />
+                <img
+                  src={guajoLogo}
+                  alt="Guajo"
+                  className="h-8 w-auto object-contain brightness-0 invert opacity-60"
+                />
+                <img
+                  src={centralticketLogo}
+                  alt="CentralTicket"
+                  className="h-8 w-auto object-contain brightness-0 invert opacity-60"
                 />
               </div>
             </div>
