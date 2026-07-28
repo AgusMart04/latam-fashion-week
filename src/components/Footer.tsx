@@ -63,6 +63,26 @@ export function Footer() {
                     Instagram
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="https://www.tiktok.com/@latamfashionweek.arg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline text-ivory/85"
+                  >
+                    TikTok
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.youtube.com/@LatamFashionWeekArgentina"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline text-ivory/85"
+                  >
+                    YouTube
+                  </a>
+                </li>
               </ul>
             </div>
             <div>

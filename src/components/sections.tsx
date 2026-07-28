@@ -254,10 +254,25 @@ export function About() {
               </p>
               <Reveal delay={0.35}>
                 <p className="mt-8">
-                  Corrientes es la sede elegida por lo que representa: un cruce de identidades,
-                  tradición textil viva y una nueva generación creativa que dialoga con Buenos
-                  Aires, São Paulo, Bogotá y Ciudad de México. Es aquí donde LATAMFW inicia su
-                  expansión regional.
+                  Corrientes reúne condiciones únicas para convertirse en una sede estratégica del
+                  circuito internacional LATAMFW. Su ubicación privilegiada dentro del Mercosur, su
+                  cercanía con Paraguay y Brasil, su crecimiento turístico y su riqueza cultural la
+                  convierten en un escenario ideal para impulsar la internacionalización de la moda
+                  latinoamericana.
+                </p>
+              </Reveal>
+              <Reveal delay={0.4}>
+                <p className="mt-8">
+                  LATAMFW llega para posicionar al nordeste argentino como un destino de referencia
+                  para la moda, la creatividad y los negocios internacionales.
+                </p>
+              </Reveal>
+              <Reveal delay={0.45}>
+                <p className="mt-8">
+                  LATAMFW integra una red de países comprometidos con el crecimiento de la industria
+                  creativa regional. Argentina, Brasil, Paraguay, Bolivia y Perú impulsan conjuntamente
+                  esta plataforma que promueve el intercambio comercial, cultural y profesional entre
+                  los principales actores del sector.
                 </p>
               </Reveal>
             </div>
@@ -281,6 +296,49 @@ export function About() {
           </Reveal>
         </div>
       </div>
+
+      <Reveal delay={0.3}>
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12 mt-16 lg:mt-24">
+          <div className="border border-border bg-muted/40 p-8 sm:p-10 lg:p-12">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="gold-rule" />
+              <span className="font-mono text-xs uppercase tracking-[0.32em] text-gold">
+                Calendario Internacional LATAMFW 2026
+              </span>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+              {[
+                { code: "pe", country: "Perú", city: "Lima / Cusco", dates: "1 – 6 Sep" },
+                { code: "ar", country: "Argentina", city: "Corrientes", dates: "8 – 13 Sep", active: true },
+                { code: "br", country: "Brasil", city: "Florianópolis", dates: "21 – 26 Sep" },
+                { code: "py", country: "Paraguay", city: "Asunción", dates: "28 – 30 Sep" },
+                { code: "bo", country: "Bolivia", city: "Santa Cruz", dates: "3 – 4 Nov" },
+              ].map((item) => (
+                <div
+                  key={item.country}
+                  className={`flex items-start gap-4 border-t border-border pt-5 ${
+                    item.active ? "border-gold" : ""
+                  }`}
+                >
+                  <img
+                    src={`https://flagcdn.com/w40/${item.code}.png`}
+                    alt={`Bandera de ${item.country}`}
+                    className="w-8 h-6 object-cover rounded-sm shadow-sm"
+                    loading="lazy"
+                  />
+                  <div>
+                    <div className="font-display text-lg text-carbon">{item.country}</div>
+                    <div className="text-xs text-graphite mt-0.5">{item.city}</div>
+                    <div className={`text-xs mt-1 font-medium ${item.active ? "text-gold" : "text-graphite"}`}>
+                      {item.dates}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -356,8 +414,8 @@ export function Pillars() {
 
 const EXPERIENCE = [
   {
-    title: "Desfiles Internacionales",
-    desc: "Runway shows curados con casas latinoamericanas.",
+    title: "Desfiles Oficiales",
+    desc: "Pasarelas de alto nivel con producción profesional y coreografía especializada.",
     img: expRunway,
     big: true,
   },
@@ -367,8 +425,8 @@ const EXPERIENCE = [
     img: expShowroom,
   },
   {
-    title: "Fashion Talks",
-    desc: "Conversaciones con referentes de moda, negocio y cultura.",
+    title: "Jornadas Educativas",
+    desc: "Conferencias y paneles con líderes de la industria sobre tendencias y negocio.",
     img: expTalks,
   },
   {
@@ -675,37 +733,37 @@ const DAYS = [
     day: "Día 01",
     date: "8 Sept",
     title: "Bienvenida",
-    events: ["Apertura", "Recepción", "Ceremonia de Bienvenida"],
+    events: ["Bienvenida Oficial", "Recepción de Delegaciones", "Networking"],
   },
   {
     day: "Día 02",
     date: "9 Sept",
     title: "Fitting",
-    events: ["Fitting de Modelos", "Preparación de Colecciones", "Showroom"],
+    events: ["Fitting Day", "Pruebas de Vestuario", "Coordinación de Producción"],
   },
   {
     day: "Día 03",
     date: "10 Sept",
     title: "Seminario",
-    events: ["Seminario de Moda y Medios", "Networking", "Showroom"],
+    events: ["Seminario de Moda y Medios", "Conferencias", "Networking"],
   },
   {
     day: "Día 04",
     date: "11 Sept",
     title: "Innovación",
-    events: ["Jornada de Finanzas e Innovación", "Networking", "Showroom"],
+    events: ["Jornada de Finanzas e Innovación", "Tecnología y Negocio", "Networking"],
   },
   {
     day: "Día 05",
     date: "12 Sept",
-    title: "Desfile Oficial",
-    events: ["Desfile Oficial", "Artistas en Vivo", "Ceremonia de Clausura"],
+    title: "Desfile Día 1",
+    events: ["Desfiles Oficiales", "Artistas en Vivo", "After LATAMFW"],
   },
   {
     day: "Día 06",
     date: "13 Sept",
-    title: "Desfile y Cierre",
-    events: ["Desfile Final", "Ceremonia de Cierre"],
+    title: "Desfile Día 2",
+    events: ["Desfiles Internacionales", "Ceremonia de Cierre"],
   },
 ];
 
@@ -1210,9 +1268,9 @@ function DynamicFields({ purpose }: { purpose: Purpose }) {
     model: (
       <>
         {base}
-        <Field label="Edad" name="age" type="number" />
-        <Field label="Altura (cm)" name="height" type="number" />
-        <Field label="País" name="country" maxLength={60} />
+        <Field label="Edad" name="age" type="number" required />
+        <Field label="Altura (cm)" name="height" type="number" required />
+        <Field label="País" name="country" maxLength={60} required />
         <Field label="Instagram" name="ig" maxLength={50} />
         <Field label="Portfolio (URL)" name="portfolio" type="url" />
         <Field label="Experiencia" name="exp" as="textarea" maxLength={300} />
@@ -1223,7 +1281,7 @@ function DynamicFields({ purpose }: { purpose: Purpose }) {
         {base}
         <Field label="Instagram" name="ig" maxLength={50} />
         <Field label="Portfolio (URL)" name="portfolio" type="url" />
-        <Field label="Especialidad" name="specialty" maxLength={100} />
+        <Field label="Especialidad" name="specialty" maxLength={100} required />
         <Field label="Experiencia" name="exp" as="textarea" maxLength={300} />
       </>
     ),
@@ -1240,7 +1298,7 @@ function DynamicFields({ purpose }: { purpose: Purpose }) {
         {base}
         <Field label="Instagram" name="ig" maxLength={50} />
         <Field label="Portfolio (URL)" name="portfolio" type="url" />
-        <Field label="Equipo propio" name="equipment" maxLength={150} />
+        <Field label="Equipo propio" name="equipment" maxLength={150} required />
         <Field label="Experiencia" name="exp" as="textarea" maxLength={300} />
       </>
     ),
@@ -1248,8 +1306,8 @@ function DynamicFields({ purpose }: { purpose: Purpose }) {
       <>
         {base}
         <Field label="Nombre de la marca" name="brand" required maxLength={100} />
-        <Field label="Categoría" name="category" maxLength={80} />
-        <Field label="País" name="country" maxLength={60} />
+        <Field label="Categoría" name="category" maxLength={80} required />
+        <Field label="País" name="country" maxLength={60} required />
         <Field label="Instagram" name="ig" maxLength={50} />
         <Field label="Sitio web" name="website" type="url" />
         <Field label="Descripción de la marca" name="message" as="textarea" maxLength={400} />
@@ -1259,8 +1317,8 @@ function DynamicFields({ purpose }: { purpose: Purpose }) {
       <>
         {base}
         <Field label="Nombre de la marca / empresa" name="brand" required maxLength={100} />
-        <Field label="Categoría de producto" name="category" maxLength={80} />
-        <Field label="País" name="country" maxLength={60} />
+        <Field label="Categoría de producto" name="category" maxLength={80} required />
+        <Field label="País" name="country" maxLength={60} required />
         <Field label="Instagram" name="ig" maxLength={50} />
         <Field label="Sitio web" name="website" type="url" />
         <Field label="Descripción de lo que exhibiría" name="message" as="textarea" maxLength={400} />
@@ -1270,7 +1328,7 @@ function DynamicFields({ purpose }: { purpose: Purpose }) {
       <>
         {base}
         <Field label="Medio" name="media" required maxLength={100} />
-        <Field label="País" name="country" maxLength={60} />
+        <Field label="País" name="country" maxLength={60} required />
         <Field label="Sitio web" name="website" type="url" />
         <Field label="Mensaje" name="message" as="textarea" maxLength={300} />
       </>
@@ -1279,8 +1337,8 @@ function DynamicFields({ purpose }: { purpose: Purpose }) {
       <>
         {base}
         <Field label="Empresa" name="company" required maxLength={100} />
-        <Field label="País" name="country" maxLength={60} />
-        <Field label="Tipo de negocio" name="btype" maxLength={100} />
+        <Field label="País" name="country" maxLength={60} required />
+        <Field label="Tipo de negocio" name="btype" maxLength={100} required />
         <Field label="Intereses comerciales" name="interests" as="textarea" maxLength={400} />
       </>
     ),

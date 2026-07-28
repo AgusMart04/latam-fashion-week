@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Applications } from "../components/sections";
+import { Applications, SmartForm } from "../components/sections";
 
 export const Route = createFileRoute("/postulaciones")({
   head: () => ({
@@ -18,6 +18,9 @@ function PostulacionesPage() {
   return (
     <main className="pt-20">
       <Applications />
+      <div id="form">
+        <SmartForm />
+      </div>
     </main>
   );
 }

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/experiencia")({
       {
         name: "description",
         content:
-          "Viví la experiencia LATAMFW: ocho territorios de moda, por qué participar, métricas del encuentro y cronograma de tres días.",
+          "Viví la experiencia LATAMFW: ocho territorios de moda, por qué participar, métricas del encuentro y cronograma de seis días.",
       },
     ],
   }),
