@@ -246,8 +246,7 @@ export function About() {
         <div className="space-y-8 text-lg leading-relaxed text-graphite lg:col-span-7 lg:col-start-6">
           <Reveal delay={0.15}>
             <p className="font-display text-2xl italic leading-relaxed text-carbon sm:text-3xl">
-              LATAMFW no nació para replicar. Nació para reescribir la manera en que América Latina
-              se muestra al mundo.
+              LATAMFW nació para reescribir la manera en que América Latina se muestra al mundo.
             </p>
           </Reveal>
           <Reveal delay={0.25}>
@@ -510,9 +509,7 @@ export function Experience() {
           <div className="text-graphite lg:col-span-6 lg:col-start-7 lg:pt-16">
             <Reveal delay={0.15}>
               <p className="text-lg leading-relaxed">
-                No es una agenda de actividades. Es una arquitectura de experiencias pensada para
-                vivir la moda desde múltiples ángulos: desde la pasarela al backstage, del showroom
-                comercial a la conversación cultural.
+                LATAMFW reúne una programación de experiencias pensadas para descubrir la moda desde todos sus ángulos: la pasarela, el backstage, el showroom comercial y la conversación cultural.
               </p>
             </Reveal>
           </div>
@@ -578,7 +575,7 @@ export function Experience() {
 const WHY = [
   {
     tag: "Visitantes",
-    title: "Vivir la moda latinoamericana desde adentro.",
+    title: "Vivir la moda latinoamericana.",
     text: "Acceso a desfiles, activaciones culturales y una experiencia editorial única en la región.",
     cta: "Comprar Entradas",
     href: "#entradas",
@@ -658,11 +655,10 @@ export function WhyParticipate() {
 const METRICS = [
   { n: 10, suffix: "+", label: "Diseñadores" },
   { n: 10, label: "Expositores" },
-  { n: 5, label: "Artistas en Vivo" },
   { n: 120, suffix: "+", label: "Profesionales" },
   { n: 800, suffix: "+", label: "Asistentes / día" },
-  { n: 5, label: "Días" },
-  { n: 0, label: "Cobertura Internacional", text: "Global" },
+  { n: 6, label: "Días" },
+  { n: 0, label: "Transmisión en Vivo", text: "Global", isLive: true },
 ];
 
 function AnimatedNumber({ value, suffix }: { value: number; suffix?: string }) {
@@ -718,9 +714,20 @@ export function Metrics() {
           {METRICS.map((m, i) => (
             <Reveal key={m.label} delay={(i % 4) * 0.08}>
               <div className="border-t border-border pt-4 sm:pt-6">
-                <div className="font-display text-5xl leading-none text-carbon sm:text-7xl">
-                  {m.text ? m.text : <AnimatedNumber value={m.n} suffix={m.suffix} />}
-                </div>
+                {m.isLive ? (
+                  <div className="flex items-center gap-3">
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8 flex-shrink-0 text-red-600 sm:h-10 sm:w-10">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    <div className="font-display text-3xl leading-tight text-carbon sm:text-5xl">
+                      {m.text}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="font-display text-5xl leading-none text-carbon sm:text-7xl">
+                    <AnimatedNumber value={m.n} suffix={m.suffix} />
+                  </div>
+                )}
                 <div className="eyebrow mt-3 sm:mt-4">{m.label}</div>
               </div>
             </Reveal>
@@ -762,7 +769,7 @@ const DAYS = [
     day: "Día 05",
     date: "12 Sept",
     title: "Desfile Día 1",
-    events: ["Desfiles Oficiales", "Artistas en Vivo", "After LATAMFW"],
+    events: ["Desfiles Oficiales", "After LATAMFW"],
   },
   {
     day: "Día 06",
@@ -774,14 +781,14 @@ const DAYS = [
 
 export function Timeline() {
   return (
-    <section id="cronograma" className="border-t border-border bg-muted/40 py-20 lg:py-40">
+    <section className="border-t border-border bg-muted/40 py-20 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
         <Reveal>
           <SectionLabel number="07" label="Cronograma" />
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="mt-8 max-w-3xl font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
-            Seis días. <span className="italic text-gold">Un ritmo.</span>
+            Seis días <span className="italic text-gold">al ritmo de la moda</span>
           </h2>
         </Reveal>
 
@@ -1036,14 +1043,14 @@ const APPLICATIONS = [
     formValue: "model",
   },
   {
-    tag: "Maquilladores",
+    tag: "Makeup Artist Team",
     desc: "Sé parte del equipo backstage de la edición.",
     detail: "Trabaja junto a directores creativos y equipos internacionales.",
     img: applyMakeup,
     formValue: "makeup",
   },
   {
-    tag: "Estilistas",
+    tag: "Hair Stylist Team",
     desc: "Aporta tu mirada al styling de la pasarela.",
     detail: "Coordinación con diseñadores y dirección artística.",
     img: applyStylist,
@@ -1559,7 +1566,7 @@ export function SmartForm() {
             </Reveal>
             <Reveal delay={0.2}>
               <p className="mt-8 text-graphite">
-                Cuéntanos sobre qué desea comunicarse y adaptamos los campos a tu perfil. Cada
+                Indícanos el motivo de tu contacto. El campo que elijas estará adaptado a tu perfil. Cada
                 mensaje llega directamente al equipo de LATAMFW.
               </p>
             </Reveal>
@@ -1569,7 +1576,7 @@ export function SmartForm() {
             <Reveal delay={0.15}>
               <form onSubmit={handleSubmit} className="space-y-10">
                 <fieldset className="space-y-4">
-                  <legend className="eyebrow mb-4">¿Sobre qué desea comunicarse?</legend>
+                  <legend className="eyebrow mb-4">Seleccione el área correspondiente a su perfil</legend>
                   <div className="flex flex-wrap gap-2">
                     {PURPOSE_OPTIONS.map((o) => {
                       const active = purpose === o.value;
@@ -1801,7 +1808,7 @@ export function Organizers() {
     <section className="py-20 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
         <Reveal>
-          <SectionLabel number="12" label="Organizadores" />
+          <SectionLabel number="13" label="Organizadores" />
         </Reveal>
         <div className="mt-16 grid gap-8 md:grid-cols-3">
           {organizers.map((o, i) => (
@@ -1832,7 +1839,7 @@ export function Organizers() {
                     , el ecosistema de moda más grande de América Latina.
                   </p>
                   <a
-                    href="https://www.cnfw.com.br/?fbclid=PARlRTSATHOt5wZG9mAmV4dG4DYWVtAjExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABpxCgpjY91p_Shz1ABE6ryPsr7lUEFizhg38PHTwNTvmGXCYg2Yj_VU9APjCY_aem_oavz65jKLB1II3pbrKW2nQ"
+                    href="https://www.cnfw.com.br/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="link-underline mt-2 inline-flex text-xs uppercase tracking-[0.28em] text-gold"
@@ -1924,7 +1931,7 @@ export function FAQ() {
     <section className="border-t border-border bg-muted/40 py-20 lg:py-36">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-12">
         <Reveal>
-          <SectionLabel number="13" label="FAQ" />
+          <SectionLabel number="14" label="FAQ" />
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="mt-8 font-display text-5xl leading-tight sm:text-6xl lg:text-7xl">
@@ -1989,7 +1996,7 @@ export function Contact() {
     <section id="contacto" className="py-20 lg:py-36">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
         <Reveal>
-          <SectionLabel number="14" label="Contacto" />
+          <SectionLabel number="15" label="Contacto" />
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="mt-8 font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
