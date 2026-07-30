@@ -166,7 +166,10 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     font-weight: 400;
     letter-spacing: -0.01em;
@@ -284,8 +287,12 @@
 }
 
 @keyframes kenburns {
-  0% { transform: scale(1.05) translate(0, 0); }
-  100% { transform: scale(1.18) translate(-1.5%, -1.5%); }
+  0% {
+    transform: scale(1.05) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.18) translate(-1.5%, -1.5%);
+  }
 }
 
 @utility kenburns {
@@ -293,8 +300,12 @@
 }
 
 @keyframes kenburns-soft {
-  0% { transform: scale(1) translate(0, 0); }
-  100% { transform: scale(1.1) translate(-0.8%, -0.8%); }
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.1) translate(-0.8%, -0.8%);
+  }
 }
 
 @utility kenburns-soft {
@@ -302,8 +313,12 @@
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @utility marquee-track {
@@ -311,8 +326,13 @@
 }
 
 @keyframes pulse-gold {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 @utility animate-pulse-gold {
@@ -320,7 +340,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

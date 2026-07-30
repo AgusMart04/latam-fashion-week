@@ -133,7 +133,9 @@ export function Hero() {
               </p>
             </div>
             <div className="flex items-baseline gap-3 text-ivory sm:flex-col sm:items-end sm:gap-1 sm:text-right">
-              <span className="whitespace-nowrap font-display text-xl sm:text-4xl">8 · 9 · 10 · 11 · 12 · 13</span>
+              <span className="whitespace-nowrap font-display text-xl sm:text-4xl">
+                8 · 9 · 10 · 11 · 12 · 13
+              </span>
               <span className="text-xs uppercase tracking-[0.22em] text-ivory/80 sm:text-sm">
                 Sept 2026 — Corrientes
               </span>
@@ -275,9 +277,9 @@ export function About() {
               <Reveal delay={0.45}>
                 <p className="mt-8">
                   LATAMFW integra una red de países comprometidos con el crecimiento de la industria
-                  creativa regional. Argentina, Brasil, Paraguay, Bolivia y Perú impulsan conjuntamente
-                  esta plataforma que promueve el intercambio comercial, cultural y profesional entre
-                  los principales actores del sector.
+                  creativa regional. Argentina, Brasil, Paraguay, Bolivia y Perú impulsan
+                  conjuntamente esta plataforma que promueve el intercambio comercial, cultural y
+                  profesional entre los principales actores del sector.
                 </p>
               </Reveal>
             </div>
@@ -314,7 +316,13 @@ export function About() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
               {[
                 { code: "pe", country: "Perú", city: "Lima / Cusco", dates: "1 – 6 Sep" },
-                { code: "ar", country: "Argentina", city: "Corrientes", dates: "8 – 13 Sep", active: true },
+                {
+                  code: "ar",
+                  country: "Argentina",
+                  city: "Corrientes",
+                  dates: "8 – 13 Sep",
+                  active: true,
+                },
                 { code: "br", country: "Brasil", city: "Florianópolis", dates: "21 – 26 Sep" },
                 { code: "py", country: "Paraguay", city: "Asunción", dates: "28 – 30 Sep" },
                 { code: "bo", country: "Bolivia", city: "Santa Cruz", dates: "3 – 4 Nov" },
@@ -334,7 +342,9 @@ export function About() {
                   <div>
                     <div className="font-display text-lg text-carbon">{item.country}</div>
                     <div className="text-xs text-graphite mt-0.5">{item.city}</div>
-                    <div className={`text-xs mt-1 font-medium ${item.active ? "text-gold" : "text-graphite"}`}>
+                    <div
+                      className={`text-xs mt-1 font-medium ${item.active ? "text-gold" : "text-graphite"}`}
+                    >
                       {item.dates}
                     </div>
                   </div>
@@ -510,7 +520,9 @@ export function Experience() {
           <div className="text-graphite lg:col-span-6 lg:col-start-7 lg:pt-16">
             <Reveal delay={0.15}>
               <p className="text-lg leading-relaxed">
-                LATAMFW reúne una programación de experiencias pensadas para descubrir la moda desde todos sus ángulos: la pasarela, el backstage, el showroom comercial y la conversación cultural.
+                LATAMFW reúne una programación de experiencias pensadas para descubrir la moda desde
+                todos sus ángulos: la pasarela, el backstage, el showroom comercial y la
+                conversación cultural.
               </p>
             </Reveal>
           </div>
@@ -718,8 +730,12 @@ export function Metrics() {
               <div className="border-t border-border pt-4 sm:pt-6">
                 {m.isLive ? (
                   <div className="flex items-center gap-3">
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8 flex-shrink-0 text-red-600 sm:h-10 sm:w-10">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="h-8 w-8 flex-shrink-0 text-red-600 sm:h-10 sm:w-10"
+                    >
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                     </svg>
                     <div className="font-display text-3xl leading-tight text-carbon sm:text-5xl">
                       {m.text}
@@ -1324,7 +1340,8 @@ function DynamicFields({
           <div>
             <div className="eyebrow mb-3">Documentos requeridos</div>
             <p className="text-sm text-graphite leading-relaxed">
-              Para completar tu postulación es necesario descargar los siguientes documentos, completarlos y subirlos firmados.
+              Para completar tu postulación es necesario descargar los siguientes documentos,
+              completarlos y subirlos firmados.
             </p>
           </div>
 
@@ -1334,8 +1351,18 @@ function DynamicFields({
               download
               className="inline-flex items-center gap-2 border border-border px-4 py-3 text-[0.7rem] uppercase tracking-[0.2em] text-carbon hover:border-carbon transition-colors"
             >
-              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              <svg
+                className="w-4 h-4 shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                />
               </svg>
               Descargar Contrato de Confidencialidad
             </a>
@@ -1344,8 +1371,18 @@ function DynamicFields({
               download
               className="inline-flex items-center gap-2 border border-border px-4 py-3 text-[0.7rem] uppercase tracking-[0.2em] text-carbon hover:border-carbon transition-colors"
             >
-              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              <svg
+                className="w-4 h-4 shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                />
               </svg>
               Descargar Formulario + Ficha Médica
             </a>
@@ -1366,9 +1403,7 @@ function DynamicFields({
           </label>
 
           <div>
-            <label className="eyebrow mb-2 block">
-              Contrato de Confidencialidad firmado *
-            </label>
+            <label className="eyebrow mb-2 block">Contrato de Confidencialidad firmado *</label>
             <input
               type="file"
               name="contractFile"
@@ -1378,7 +1413,11 @@ function DynamicFields({
                 const file = e.target.files?.[0] ?? null;
                 if (file) {
                   const err = validateFile(file);
-                  if (err) { alert(err); e.target.value = ""; return; }
+                  if (err) {
+                    alert(err);
+                    e.target.value = "";
+                    return;
+                  }
                 }
                 onContractFile?.(file);
               }}
@@ -1390,9 +1429,7 @@ function DynamicFields({
           </div>
 
           <div>
-            <label className="eyebrow mb-2 block">
-              Formulario + Ficha Médica completado *
-            </label>
+            <label className="eyebrow mb-2 block">Formulario + Ficha Médica completado *</label>
             <input
               type="file"
               name="formFile"
@@ -1402,15 +1439,17 @@ function DynamicFields({
                 const file = e.target.files?.[0] ?? null;
                 if (file) {
                   const err = validateFile(file);
-                  if (err) { alert(err); e.target.value = ""; return; }
+                  if (err) {
+                    alert(err);
+                    e.target.value = "";
+                    return;
+                  }
                 }
                 onFormFile?.(file);
               }}
               className="w-full text-sm text-graphite file:mr-4 file:py-2 file:px-4 file:border file:border-border file:text-[0.7rem] file:uppercase file:tracking-[0.2em] file:text-carbon file:hover:border-carbon file:transition-colors file:bg-transparent"
             />
-            {formFile && (
-              <span className="mt-1 block text-xs text-graphite">{formFile.name}</span>
-            )}
+            {formFile && <span className="mt-1 block text-xs text-graphite">{formFile.name}</span>}
           </div>
         </div>
       </>
@@ -1460,7 +1499,12 @@ function DynamicFields({
         <Field label="País" name="country" maxLength={60} required />
         <Field label="Instagram" name="ig" maxLength={50} />
         <Field label="Sitio web" name="website" type="url" />
-        <Field label="Descripción de lo que exhibiría" name="message" as="textarea" maxLength={400} />
+        <Field
+          label="Descripción de lo que exhibiría"
+          name="message"
+          as="textarea"
+          maxLength={400}
+        />
       </>
     ),
     press: (
@@ -1569,8 +1613,8 @@ export function SmartForm() {
             </Reveal>
             <Reveal delay={0.2}>
               <p className="mt-8 text-graphite">
-                Indícanos el motivo de tu contacto. El campo que elijas estará adaptado a tu perfil. Cada
-                mensaje llega directamente al equipo de LATAMFW.
+                Indícanos el motivo de tu contacto. El campo que elijas estará adaptado a tu perfil.
+                Cada mensaje llega directamente al equipo de LATAMFW.
               </p>
             </Reveal>
           </div>
@@ -1579,7 +1623,9 @@ export function SmartForm() {
             <Reveal delay={0.15}>
               <form onSubmit={handleSubmit} className="space-y-10">
                 <fieldset className="space-y-4">
-                  <legend className="eyebrow mb-4">Seleccione el área correspondiente a su perfil</legend>
+                  <legend className="eyebrow mb-4">
+                    Seleccione el área correspondiente a su perfil
+                  </legend>
                   <div className="flex flex-wrap gap-2">
                     {PURPOSE_OPTIONS.map((o) => {
                       const active = purpose === o.value;
@@ -1864,7 +1910,11 @@ export function Organizers() {
 export function Collaborators() {
   const collaborators = [
     { name: "Agustin Web Studio", role: "Desarrollo Web y Tecnología", logo: agustinWebLogo },
-    { name: "Fundación Integrar", role: "Inclusión y Responsabilidad Social", logo: fundacionIntegrarLogo },
+    {
+      name: "Fundación Integrar",
+      role: "Inclusión y Responsabilidad Social",
+      logo: fundacionIntegrarLogo,
+    },
     { name: "El Círculo", role: "Agencia de Modelos", logo: elCirculoLogo },
     { name: "Guajo", role: "Sede Oficial del Evento", logo: guajoLogo },
     { name: "CentralTicket", role: "Ticketera Oficial", logo: centralticketLogo },
@@ -2009,13 +2059,37 @@ export function Contact() {
 
         <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-6">
           {[
-            { label: "Email", value: "latamfwargentina@gmail.com", href: "mailto:latamfwargentina@gmail.com", span: 3 },
-            { label: "Instagram", value: "@latinoamericafashionweekarg", href: "https://instagram.com/latinoamericafashionweekarg", span: 3 },
-            { label: "Argentina", value: "+54 9 3795 58-7617", href: "tel:+5493795587617", span: 2 },
-            { label: "Argentina 2", value: "+54 9 2645 07-5888", href: "tel:+5492645075888", span: 2 },
+            {
+              label: "Email",
+              value: "latamfwargentina@gmail.com",
+              href: "mailto:latamfwargentina@gmail.com",
+              span: 3,
+            },
+            {
+              label: "Instagram",
+              value: "@latinoamericafashionweekarg",
+              href: "https://instagram.com/latinoamericafashionweekarg",
+              span: 3,
+            },
+            {
+              label: "Argentina",
+              value: "+54 9 3795 58-7617",
+              href: "tel:+5493795587617",
+              span: 2,
+            },
+            {
+              label: "Argentina 2",
+              value: "+54 9 2645 07-5888",
+              href: "tel:+5492645075888",
+              span: 2,
+            },
             { label: "Brasil", value: "+55 11 95058-4800", href: "tel:+5511950584800", span: 2 },
           ].map((c, i) => (
-            <Reveal key={c.label} delay={i * 0.1} className={c.span === 3 ? "lg:col-span-3" : "lg:col-span-2"}>
+            <Reveal
+              key={c.label}
+              delay={i * 0.1}
+              className={c.span === 3 ? "lg:col-span-3" : "lg:col-span-2"}
+            >
               <a
                 href={c.href}
                 className="group block border-t border-border pt-6 transition-colors hover:border-gold"
