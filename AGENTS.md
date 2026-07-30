@@ -82,6 +82,13 @@ Cuando crees un archivo: explicar por qué existe, dónde va, qué responsabilid
 
 ---
 
+## Commits
+
+NO hacer commits ni pushes a menos que el usuario lo pida explícitamente.
+El usuario quiere control total sobre qué archivos se commitean y cuándo.
+
+---
+
 ## Dependencias
 
 NO:

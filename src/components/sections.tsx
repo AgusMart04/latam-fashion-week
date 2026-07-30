@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "motion/react";
+import { useLocation } from "@tanstack/react-router";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 import heroImg from "@/assets/hero.jpg";
@@ -600,6 +601,7 @@ const WHY = [
 ];
 
 export function WhyParticipate() {
+  const { pathname } = useLocation();
   return (
     <section className="border-t border-border bg-carbon py-20 text-ivory lg:py-40">
       <div className="mx-auto max-w-[1500px] px-6 lg:px-12">
@@ -635,7 +637,7 @@ export function WhyParticipate() {
                   <h3 className="mt-4 font-display text-3xl leading-tight text-ivory">{w.title}</h3>
                   <p className="mt-4 text-ivory/70">{w.text}</p>
                   <a
-                    href={w.href === "#form" && typeof window !== "undefined" && window.location.pathname !== "/" ? "/#form" : w.href}
+                    href={w.href === "#form" && pathname !== "/" ? "/#form" : w.href}
                     className="link-underline mt-auto inline-flex self-start pt-6 text-xs uppercase tracking-[0.28em] text-gold"
                   >
                     {w.cta} →
@@ -1087,7 +1089,8 @@ const APPLICATIONS = [
 ];
 
 function ApplicationCard({ a, index }: { a: (typeof APPLICATIONS)[number]; index: number }) {
-  const isPostulaciones = typeof window !== "undefined" && window.location.pathname === "/postulaciones";
+  const { pathname } = useLocation();
+  const isPostulaciones = pathname === "/postulaciones";
   return (
     <Reveal delay={index * 0.1} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]">
       <article className="group relative overflow-hidden bg-carbon">
@@ -1489,6 +1492,9 @@ function DynamicFields({
   return <>{purpose ? map[purpose] : null}</>;
 }
 
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbwVcU5dCxgMl9oCF575KXgs4V7NXgeHIE22QJVC-BxStdbH8kAnzN5u_EZ9eLrfHwfL/exec";
+
 export function SmartForm() {
   const [purpose, setPurpose] = useState<Purpose>("");
   const [submitted, setSubmitted] = useState(false);
@@ -1504,9 +1510,6 @@ export function SmartForm() {
     setContractAccepted(false);
     setError(false);
   }, [purpose]);
-
-  const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbwVcU5dCxgMl9oCF575KXgs4V7NXgeHIE22QJVC-BxStdbH8kAnzN5u_EZ9eLrfHwfL/exec";
 
   function fileToBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
