@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from "./routes/__root"
 import { Route as IndexRouteImport } from "./routes/index"
 import { Route as ContactoRouteImport } from "./routes/contacto"
+import { Route as DirectoRouteImport } from "./routes/directo"
 import { Route as EntradasRouteImport } from "./routes/entradas"
 import { Route as EventoRouteImport } from "./routes/evento"
 import { Route as ExperienciaRouteImport } from "./routes/experiencia"
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const ContactoRoute = ContactoRouteImport.update({
   id: "/contacto",
   path: "/contacto",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DirectoRoute = DirectoRouteImport.update({
+  id: "/directo",
+  path: "/directo",
   getParentRoute: () => rootRouteImport,
 } as any)
 const EntradasRoute = EntradasRouteImport.update({
@@ -50,6 +56,7 @@ const PostulacionesRoute = PostulacionesRouteImport.update({
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
   "/contacto": typeof ContactoRoute
+  "/directo": typeof DirectoRoute
   "/entradas": typeof EntradasRoute
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
   "/contacto": typeof ContactoRoute
+  "/directo": typeof DirectoRoute
   "/entradas": typeof EntradasRoute
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   "/": typeof IndexRoute
   "/contacto": typeof ContactoRoute
+  "/directo": typeof DirectoRoute
   "/entradas": typeof EntradasRoute
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | "/"
     | "/contacto"
+    | "/directo"
     | "/entradas"
     | "/evento"
     | "/experiencia"
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | "/"
     | "/contacto"
+    | "/directo"
     | "/entradas"
     | "/evento"
     | "/experiencia"
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | "__root__"
     | "/"
     | "/contacto"
+    | "/directo"
     | "/entradas"
     | "/evento"
     | "/experiencia"
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactoRoute: typeof ContactoRoute
+  DirectoRoute: typeof DirectoRoute
   EntradasRoute: typeof EntradasRoute
   EventoRoute: typeof EventoRoute
   ExperienciaRoute: typeof ExperienciaRoute
@@ -122,6 +135,13 @@ declare module "@tanstack/react-router" {
       path: "/contacto"
       fullPath: "/contacto"
       preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/directo": {
+      id: "/directo"
+      path: "/directo"
+      fullPath: "/directo"
+      preLoaderRoute: typeof DirectoRouteImport
       parentRoute: typeof rootRouteImport
     }
     "/entradas": {
@@ -158,6 +178,7 @@ declare module "@tanstack/react-router" {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactoRoute: ContactoRoute,
+  DirectoRoute: DirectoRoute,
   EntradasRoute: EntradasRoute,
   EventoRoute: EventoRoute,
   ExperienciaRoute: ExperienciaRoute,
