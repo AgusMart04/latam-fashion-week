@@ -5,6 +5,7 @@
 NO tocar archivos críticos sin preguntar primero.
 
 Archivos críticos:
+
 - `index.html`
 - `src/routes/__root.tsx`
 - `package.json`
@@ -22,6 +23,7 @@ Si no estás seguro de si un archivo es crítico → preguntar.
 Tocar únicamente lo necesario.
 
 NO:
+
 - refactorizar código no relacionado
 - reformatear archivos enteros sin motivo
 - cambiar patrones existentes arbitrariamente
@@ -29,6 +31,7 @@ NO:
 - limpiar cosas ajenas a la tarea actual
 
 SI:
+
 - mantener cambios acotados
 - minimizar riesgo
 - respetar estructura existente
@@ -39,11 +42,13 @@ SI:
 ## Simplicidad primero
 
 Preferir:
+
 - código simple y entendible
 - soluciones pequeñas
 - menor cantidad de abstracciones
 
 Evitar:
+
 - overengineering
 - abstracciones innecesarias
 - boilerplate innecesario
@@ -56,6 +61,7 @@ Si una solución más simple resuelve el problema igual de bien → usar la más
 ## Leer antes de escribir
 
 Antes de agregar o modificar código:
+
 - leer el archivo completo o la sección relevante
 - entender por qué está estructurado así
 - revisar imports y exports relacionados
@@ -67,11 +73,13 @@ NO asumir que algo está mal solo porque es diferente a tu preferencia.
 ## Creación de archivos
 
 ### Permitido sin preguntar
+
 - componentes pequeños y aislados
 - helpers o utilidades simples
 - cambios en archivos existentes
 
 ### Requiere validación
+
 - nuevas carpetas
 - nuevos archivos de configuración
 - nuevas rutas
@@ -92,11 +100,13 @@ El usuario quiere control total sobre qué archivos se commitean y cuándo.
 ## Dependencias
 
 NO:
+
 - agregar librerías innecesarias
 - instalar paquetes sin justificar
 - actualizar dependencias automáticamente
 
 SI:
+
 - preferir soluciones nativas/simples
 - justificar cada nueva dependencia
 - pedir aprobación antes de instalar
@@ -108,11 +118,13 @@ SI:
 Todo texto visible del sitio debe estar en español neutro latinoamericano.
 
 NO usar:
+
 - voseo (tenés, podés, hacés)
 - modismos argentinos (che, boludo, re)
 - conjugaciones de voseo (sos, venís, querés)
 
 SI usar:
+
 - ustedes (tienen, pueden, quieren)
 - formas neutras (podés → pueden, tenés → tienen)
 
@@ -121,12 +133,15 @@ SI usar:
 ## Comunicación
 
 ### Separar hechos de hipótesis
+
 - "lo verifiqué" vs "creo que" vs "debería funcionar"
 
 ### NO usar lenguaje engañosamente confiado
+
 Evitar frases como "ya quedó perfecto", "todo funciona" si no fue realmente verificado.
 
 ### Decir explícitamente qué NO fue validado
+
 Siempre aclarar qué se probó, qué no se probó, qué edge cases faltan.
 
 ---
@@ -170,6 +185,7 @@ Siempre aclarar qué se probó, qué no se probó, qué edge cases faltan.
 NUNCA afirmar que algo funciona sin haberlo verificado.
 
 Siempre especificar:
+
 - qué fue probado
 - cómo fue probado
 - qué NO fue probado
@@ -193,6 +209,7 @@ Siempre especificar:
 Al final de cada mensaje donde se use una skill, reportar cuáles se usaron.
 
 Formato:
+
 ```
 Skills utilizadas: [nombre1], [nombre2]
 ```
@@ -200,11 +217,13 @@ Skills utilizadas: [nombre1], [nombre2]
 Si no se usó ninguna skill → no reportar nada.
 
 Ejemplo:
+
 > Listo, el archivo está creado.
-> 
+>
 > Skills utilizadas: frontend-design
 
 Esto sirve para:
+
 - transparencia sobre qué herramientas se activaron
 - debugging si algo sale mal
 - seguimiento de qué skills se usan en el proyecto
@@ -214,6 +233,7 @@ Esto sirve para:
 ## Principio final
 
 Si hay duda entre:
+
 - velocidad vs seguridad → **seguridad**
 - intuición vs verificación → **verificación**
 - suposición vs pregunta → **pregunta**

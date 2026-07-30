@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       { title: "LATAMFW 2026 — Latinoamérica Fashion Week Argentina" },
       {
         name: "description",
-          content:
+        content:
           "LATAMFW 2026. Moda, cultura y negocios conectando a América Latina. 8–13 de septiembre, Corrientes, Argentina.",
       },
     ],

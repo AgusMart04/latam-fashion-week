@@ -92,7 +92,11 @@ export function LiveStream() {
       if (stored) {
         const data = JSON.parse(stored);
         const elapsed = Date.now() - data.timestamp;
-        if (data.email === VALID_EMAIL && data.ticketId === VALID_TICKET_ID && elapsed < SESSION_DURATION) {
+        if (
+          data.email === VALID_EMAIL &&
+          data.ticketId === VALID_TICKET_ID &&
+          elapsed < SESSION_DURATION
+        ) {
           setUnlocked(true);
         } else {
           localStorage.removeItem(STORAGE_KEY);
@@ -112,7 +116,10 @@ export function LiveStream() {
       setTimeout(() => {
         if (email === VALID_EMAIL && ticketId === VALID_TICKET_ID) {
           try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ email, ticketId, timestamp: Date.now() }));
+            localStorage.setItem(
+              STORAGE_KEY,
+              JSON.stringify({ email, ticketId, timestamp: Date.now() }),
+            );
           } catch {
             // localStorage unavailable
           }
@@ -182,7 +189,8 @@ export function LiveStream() {
 
           <Reveal delay={0.2}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ivory/70 sm:text-xl">
-              Vive cada momento de Latinoamérica Fashion Week Argentina desde cualquier parte del mundo.
+              Vive cada momento de Latinoamérica Fashion Week Argentina desde cualquier parte del
+              mundo.
             </p>
           </Reveal>
         </div>
@@ -192,35 +200,35 @@ export function LiveStream() {
       <section className="bg-carbon py-16 lg:py-24">
         <div className="mx-auto max-w-5xl px-6 lg:px-12">
           <Reveal>
-              {/* Player + Overlay grid */}
-              <div
-                className={`relative w-full border border-white/10 bg-graphite ${showPlayer ? "" : "min-h-[420px] sm:min-h-[480px]"}`}
-                style={showPlayer ? { aspectRatio: "16 / 9" } : undefined}
-              >
-                {/* Player */}
-                {showPlayer ? (
-                  <iframe
-                    src="https://www.youtube.com/embed?listType=channel_list&list=UC-placeholder"
-                    title="LATAMFW 2026 — Transmisión en Vivo"
-                    className="absolute inset-0 h-full w-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-graphite" />
-                )}
+            {/* Player + Overlay grid */}
+            <div
+              className={`relative w-full border border-white/10 bg-graphite ${showPlayer ? "" : "min-h-[420px] sm:min-h-[480px]"}`}
+              style={showPlayer ? { aspectRatio: "16 / 9" } : undefined}
+            >
+              {/* Player */}
+              {showPlayer ? (
+                <iframe
+                  src="https://www.youtube.com/embed?listType=channel_list&list=UC-placeholder"
+                  title="LATAMFW 2026 — Transmisión en Vivo"
+                  className="absolute inset-0 h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <div className="absolute inset-0 bg-graphite" />
+              )}
 
-                {/* Overlay de acceso */}
-                <AnimatePresence>
-                  {!showPlayer && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="absolute inset-0 z-10 flex items-center justify-center bg-carbon/70 backdrop-blur-2xl"
-                    >
-                      <div className="w-full max-w-xs px-4 text-center sm:max-w-sm sm:px-6">
+              {/* Overlay de acceso */}
+              <AnimatePresence>
+                {!showPlayer && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0 z-10 flex items-center justify-center bg-carbon/70 backdrop-blur-2xl"
+                  >
+                    <div className="w-full max-w-xs px-4 text-center sm:max-w-sm sm:px-6">
                       {/* Candado */}
                       <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-gold/10 sm:mb-6 sm:h-16 sm:w-16">
                         <svg
@@ -286,25 +294,53 @@ export function LiveStream() {
                           <button
                             type="button"
                             onClick={() => setShowTicket(!showTicket)}
-                            aria-label={showTicket ? "Ocultar ID de entrada" : "Mostrar ID de entrada"}
+                            aria-label={
+                              showTicket ? "Ocultar ID de entrada" : "Mostrar ID de entrada"
+                            }
                             className="absolute right-3 top-1/2 -translate-y-1/2 text-ivory/40 transition-colors hover:text-ivory/70 sm:right-3"
                             tabIndex={-1}
                           >
                             {showTicket ? (
-                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 sm:h-5 sm:w-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                              <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                className="h-4 w-4 sm:h-5 sm:w-5"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                />
                               </svg>
                             ) : (
-                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 sm:h-5 sm:w-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                              <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                className="h-4 w-4 sm:h-5 sm:w-5"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+                                />
                               </svg>
                             )}
                           </button>
                         </div>
 
                         {authError && (
-                          <p className="text-xs text-red-400">Credenciales incorrectas. Intente nuevamente.</p>
+                          <p className="text-xs text-red-400">
+                            Credenciales incorrectas. Intente nuevamente.
+                          </p>
                         )}
 
                         <button
@@ -390,7 +426,10 @@ export function LiveStream() {
 
             <div className="mt-12 grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-4">
               {cells.map((c) => (
-                <div key={c.l} className="flex flex-col items-center gap-2 bg-ivory px-4 py-8 sm:px-0 sm:py-12">
+                <div
+                  key={c.l}
+                  className="flex flex-col items-center gap-2 bg-ivory px-4 py-8 sm:px-0 sm:py-12"
+                >
                   <span className="font-mono text-5xl tabular-nums text-carbon sm:text-7xl">
                     {String(c.v).padStart(2, "0")}
                   </span>
@@ -432,7 +471,10 @@ export function LiveStream() {
                   </h3>
                   <ul className="mt-4 space-y-2">
                     {d.events.map((e) => (
-                      <li key={e} className="flex items-baseline gap-3 text-sm text-carbon sm:text-base">
+                      <li
+                        key={e}
+                        className="flex items-baseline gap-3 text-sm text-carbon sm:text-base"
+                      >
                         <span className="h-px w-4 flex-shrink-0 bg-gold" />
                         {e}
                       </li>

@@ -30,7 +30,7 @@ export function LatamMap() {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const [Comp, setComp] = useState<MapComponents | null>(null);
   const [mapZoom, setMapZoom] = useState(() =>
-    typeof window !== "undefined" && window.innerWidth < 768 ? 12 : 13
+    typeof window !== "undefined" && window.innerWidth < 768 ? 12 : 13,
   );
 
   useEffect(() => {
@@ -43,10 +43,7 @@ export function LatamMap() {
   useEffect(() => {
     let mounted = true;
     (async () => {
-      const [rl, L] = await Promise.all([
-        import("react-leaflet"),
-        import("leaflet"),
-      ]);
+      const [rl, L] = await Promise.all([import("react-leaflet"), import("leaflet")]);
       // @ts-ignore
       await import("leaflet/dist/leaflet.css");
 
@@ -121,8 +118,8 @@ export function LatamMap() {
               Sedes y <span className="italic text-gold">puntos clave</span>.
             </h2>
             <p className="max-w-md text-ivory/70">
-              La ciudad entera se convierte en escenario. Una constelación de
-              localizaciones que componen la experiencia.
+              La ciudad entera se convierte en escenario. Una constelación de localizaciones que
+              componen la experiencia.
             </p>
           </div>
         </Reveal>
@@ -131,7 +128,7 @@ export function LatamMap() {
           <div className="aspect-[4/3] md:aspect-[21/10] w-full bg-carbon relative">
             {Comp ? (
               <Comp.MapContainer
-                center={[-27.470, -58.828]}
+                center={[-27.47, -58.828]}
                 zoom={mapZoom}
                 scrollWheelZoom={false}
                 dragging={true}
@@ -141,7 +138,7 @@ export function LatamMap() {
                 zoomControl={false}
                 style={{ height: "100%", width: "100%" }}
               >
-                <Comp.TileLayer url={DARK_TILES} attribution='&copy; OpenStreetMap, CARTO' />
+                <Comp.TileLayer url={DARK_TILES} attribution="&copy; OpenStreetMap, CARTO" />
                 <Comp.TileLayer url={LABEL_TILES} />
                 {VENUES.map((v) => (
                   <Comp.Marker key={v.id} position={v.coords} icon={Comp.goldIcon}>
@@ -149,12 +146,8 @@ export function LatamMap() {
                       <div className="text-[10px] uppercase tracking-[0.32em] text-gold mb-2">
                         {v.type}
                       </div>
-                      <div className="font-display text-xl italic text-ivory mb-2">
-                        {v.name}
-                      </div>
-                      <div className="text-xs text-ivory/70 leading-relaxed">
-                        {v.description}
-                      </div>
+                      <div className="font-display text-xl italic text-ivory mb-2">{v.name}</div>
+                      <div className="text-xs text-ivory/70 leading-relaxed">{v.description}</div>
                       <a
                         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name + ", Corrientes, Argentina")}`}
                         target="_blank"
@@ -184,12 +177,8 @@ export function LatamMap() {
                 rel="noopener noreferrer"
                 className="group block bg-carbon p-5 h-full transition-colors hover:bg-ivory/5"
               >
-                <div className="text-[9px] uppercase tracking-[0.32em] text-gold">
-                  {v.type}
-                </div>
-                <div className="mt-2 font-display text-base italic text-ivory">
-                  {v.name}
-                </div>
+                <div className="text-[9px] uppercase tracking-[0.32em] text-gold">{v.type}</div>
+                <div className="mt-2 font-display text-base italic text-ivory">{v.name}</div>
                 <div className="mt-3 text-[10px] uppercase tracking-[0.28em] text-gold transition-colors">
                   Abrir en Maps →
                 </div>
@@ -219,7 +208,9 @@ function SectionLabel({ number, label }: { number: string; label: string }) {
     <div className="flex items-center gap-4">
       <span className="font-mono text-xs tracking-widest text-ivory/70">{number}</span>
       <span className="h-px w-12 bg-gold" />
-      <span className="font-mono text-[0.65rem] uppercase tracking-[0.32em] text-ivory/70">{label}</span>
+      <span className="font-mono text-[0.65rem] uppercase tracking-[0.32em] text-ivory/70">
+        {label}
+      </span>
     </div>
   );
 }
