@@ -10,6 +10,8 @@ export const Route = createFileRoute("/experiencia")({
         content:
           "Vive la experiencia LATAMFW: ocho territorios de moda, por qué participar, métricas del encuentro y cronograma de seis días.",
       },
+      { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
     ],
   }),
   component: ExperienciaPage,

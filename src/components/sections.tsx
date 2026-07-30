@@ -169,7 +169,7 @@ export function Hero() {
 
 /* ---------------------------------------------------- countdown */
 
-const TARGET_DATE = new Date("2026-09-08T09:00:00-03:00").getTime();
+const TARGET_DATE = new Date("2026-09-08T19:00:00-03:00").getTime();
 
 function useCountdown() {
   const [now, setNow] = useState<number | null>(null);

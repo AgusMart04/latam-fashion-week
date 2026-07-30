@@ -430,7 +430,7 @@ export function LiveStream() {
                   key={c.l}
                   className="flex flex-col items-center gap-2 bg-ivory px-4 py-8 sm:px-0 sm:py-12"
                 >
-                  <span className="font-mono text-5xl tabular-nums text-carbon sm:text-7xl">
+                  <span className="font-display text-6xl tabular-nums text-carbon sm:text-7xl lg:text-8xl">
                     {String(c.v).padStart(2, "0")}
                   </span>
                   <span className="eyebrow">{c.l}</span>

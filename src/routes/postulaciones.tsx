@@ -9,6 +9,8 @@ export const Route = createFileRoute("/postulaciones")({
         name: "description",
         content: "Postula para LATAMFW 2026: diseñadores, modelos, maquilladores y estilistas.",
       },
+      { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
     ],
   }),
   component: PostulacionesPage,

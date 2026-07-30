@@ -28,6 +28,8 @@ export const Route = createFileRoute("/")({
         content:
           "LATAMFW 2026. Moda, cultura y negocios conectando a América Latina. 8–13 de septiembre, Corrientes, Argentina.",
       },
+      { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
     ],
   }),
   component: Index,

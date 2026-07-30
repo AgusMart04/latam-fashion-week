@@ -10,6 +10,8 @@ export const Route = createFileRoute("/contacto")({
         content:
           "Contáctanos para entradas, empresas, postulaciones o consultas generales sobre LATAMFW 2026.",
       },
+      { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
     ],
   }),
   component: ContactoPage,
