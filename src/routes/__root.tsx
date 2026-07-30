@@ -77,8 +77,8 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "LATAMFW" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:image", content: "/og-image.jpg" },
-      { name: "twitter:image", content: "/og-image.jpg" },
+      { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
       { name: "twitter:title", content: "LATAMFW 2026 — Latinoamérica Fashion Week Argentina" },
       {
         name: "twitter:description",
