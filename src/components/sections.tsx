@@ -1548,11 +1548,13 @@ export function SmartForm() {
   const [contractFile, setContractFile] = useState<File | null>(null);
   const [formFile, setFormFile] = useState<File | null>(null);
   const [contractAccepted, setContractAccepted] = useState(false);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
 
   useEffect(() => {
     setContractFile(null);
     setFormFile(null);
     setContractAccepted(false);
+    setPrivacyAccepted(false);
     setError(false);
   }, [purpose]);
 
@@ -1674,10 +1676,45 @@ export function SmartForm() {
 
                 {purpose && !submitted && (
                   <>
-                    <div className="pt-4">
+                    <label className="flex items-start gap-3 pt-4 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={privacyAccepted}
+                        onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                        className="mt-1 h-4 w-4 accent-gold"
+                      />
+                      <span className="text-sm text-graphite">
+                        {purpose === "model" ? (
+                          <>
+                            Declaro que la información proporcionada es veraz, acepto la{" "}
+                            <a href="/privacidad" className="underline hover:text-gold">
+                              Política de Privacidad
+                            </a>{" "}
+                            y la{" "}
+                            <a href="/politica-cookies" className="underline hover:text-gold">
+                              Política de Cookies
+                            </a>{" "}
+                            de LATAMFW.
+                          </>
+                        ) : (
+                          <>
+                            Acepto la{" "}
+                            <a href="/privacidad" className="underline hover:text-gold">
+                              Política de Privacidad
+                            </a>{" "}
+                            y la{" "}
+                            <a href="/politica-cookies" className="underline hover:text-gold">
+                              Política de Cookies
+                            </a>{" "}
+                            de LATAMFW.
+                          </>
+                        )}
+                      </span>
+                    </label>
+                    <div>
                       <button
                         type="submit"
-                        disabled={submitting}
+                        disabled={submitting || !privacyAccepted}
                         className="btn-primary disabled:opacity-50"
                       >
                         {submitting ? "Procesando..." : "Enviar mensaje"}

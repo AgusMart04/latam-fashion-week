@@ -1,9 +1,11 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
+import { useState, useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { Navigation } from "../components/Navigation";
 import { Footer } from "../components/Footer";
+import { CookieConsent } from "../components/CookieConsent";
 
 function NotFoundComponent() {
   return (
@@ -104,13 +106,20 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
+
+  useEffect(() => {
+    setAnalyticsEnabled(localStorage.getItem("cookie-consent") === "accepted");
+  }, []);
+
   return (
     <div className="bg-background text-foreground">
       <HeadContent />
       <Navigation />
       <Outlet />
       <Footer />
-      <Analytics />
+      <CookieConsent />
+      {analyticsEnabled && <Analytics />}
       <Scripts />
     </div>
   );
