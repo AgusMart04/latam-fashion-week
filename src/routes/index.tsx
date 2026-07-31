@@ -14,6 +14,7 @@ import {
   Sponsors,
   Organizers,
   Collaborators,
+  CnfwCallout,
   FAQ,
   Contact,
 } from "../components/sections";
@@ -53,6 +54,7 @@ function Index() {
       <LatamMap />
       <Organizers />
       <Collaborators />
+      <CnfwCallout />
       <FAQ />
       <Contact />
     </main>

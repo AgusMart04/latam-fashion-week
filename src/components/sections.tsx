@@ -30,9 +30,10 @@ import sambrizziLogo from "@/assets/logos/SAMBRIZZI-LOGO.png";
 import conamLogo from "@/assets/logos/CONAM-LOGO.png";
 import agustinWebLogo from "@/assets/logos/mi-logo.png";
 import fundacionIntegrarLogo from "@/assets/logos/fundacion-integrar.png";
-import elCirculoLogo from "@/assets/logos/el-circulo.png";
 import guajoLogo from "@/assets/logos/guajo.png";
+import guajoProduccionesLogo from "@/assets/logos/guajo-producciones.png";
 import centralticketLogo from "@/assets/logos/centralticket.png";
+import tampaLogo from "@/assets/logos/tampa.png";
 
 /* ---------------------------------------------------- helpers */
 
@@ -1848,22 +1849,31 @@ export function Sponsors() {
 /* ---------------------------------------------------- organizers */
 
 export function Organizers() {
-  const organizers = [
-    { name: "CNFW Brasil", role: "Curaduría y dirección artística", logo: cnfwLogo },
-    { name: "Sambrizzi Producción", role: "Producción integral del evento", logo: sambrizziLogo },
-    { name: "CONAM", role: "Consejo Argentino de la Moda", logo: conamLogo },
+  const production = [
+    { name: "Sambrizzi Producción", role: "Producción general y ejecutivo internacional", logo: sambrizziLogo },
+    { name: "Guajo Producciones", role: "Producción y dirección local", logo: guajoProduccionesLogo },
+  ];
+  const respaldo = [
+    { name: "CNFW Brasil", role: "Respaldo oficial del evento", logo: cnfwLogo },
+    { name: "CONAM", role: "Respaldo oficial del evento", logo: conamLogo },
+  ];
+  const oficiales = [
+    { name: "Fiesta Clausura Oficial", logo: tampaLogo },
+    { name: "Sede Oficial", logo: guajoLogo },
+    { name: "Ticketera Oficial", logo: centralticketLogo },
   ];
   return (
     <section className="py-20 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+        {/* Producción General */}
         <Reveal>
-          <SectionLabel number="13" label="Organizadores" />
+          <SectionLabel number="13" label="Producción General" />
         </Reveal>
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
-          {organizers.map((o, i) => (
+        <div className="mt-16 grid gap-8 md:grid-cols-2">
+          {production.map((o, i) => (
             <Reveal key={o.name} delay={i * 0.1}>
               <div className="border border-border p-10 lg:p-14">
-                <span className="eyebrow">Organizador</span>
+                <span className="eyebrow">Producción</span>
                 <div className="mt-6 flex h-24 items-center">
                   <img src={o.logo} alt={o.name} className="max-h-24 w-auto object-contain" />
                 </div>
@@ -1873,8 +1883,53 @@ export function Organizers() {
           ))}
         </div>
 
-        <Reveal delay={0.3}>
-          <div className="mt-12 border border-border bg-background p-8 sm:p-10">
+        {/* Respaldo */}
+        <Reveal className="mt-16">
+          <SectionLabel number="14" label="Respaldo" />
+        </Reveal>
+        <div className="mt-16 grid gap-8 md:grid-cols-2">
+          {respaldo.map((o, i) => (
+            <Reveal key={o.name} delay={i * 0.1}>
+              <div className="border border-border p-10 lg:p-14">
+                <span className="eyebrow">Respaldo</span>
+                <div className="mt-6 flex h-24 items-center">
+                  <img src={o.logo} alt={o.name} className="max-h-24 w-auto object-contain" />
+                </div>
+                <div className="mt-4 text-graphite">{o.role}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Oficiales destacados */}
+        <Reveal className="mt-16">
+          <SectionLabel number="15" label="Oficiales" />
+        </Reveal>
+        <div className="mt-16 grid gap-8 md:grid-cols-3">
+          {oficiales.map((o, i) => (
+            <Reveal key={o.name} delay={i * 0.1}>
+              <div className="border border-border bg-background p-10 text-center lg:p-14">
+                <span className="eyebrow">{o.name}</span>
+                <div className="mt-6 flex h-24 items-center justify-center">
+                  <img src={o.logo} alt={o.name} className="max-h-24 w-auto object-contain" />
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------------------------------------------- cnfw callout */
+
+export function CnfwCallout() {
+  return (
+    <section className="pt-0 pb-12 lg:pt-2 lg:pb-20">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+        <Reveal>
+          <div className="border border-border bg-background p-8 sm:p-10">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-6">
                 <img src={cnfwLogo} alt="CNFW Brasil" className="h-14 w-auto object-contain" />
@@ -1915,9 +1970,6 @@ export function Collaborators() {
       role: "Inclusión y Responsabilidad Social",
       logo: fundacionIntegrarLogo,
     },
-    { name: "El Círculo", role: "Agencia de Modelos", logo: elCirculoLogo },
-    { name: "Guajo", role: "Sede Oficial del Evento", logo: guajoLogo },
-    { name: "CentralTicket", role: "Ticketera Oficial", logo: centralticketLogo },
   ];
   return (
     <section className="pt-0 pb-12 lg:pt-2 lg:pb-20">
@@ -1925,11 +1977,11 @@ export function Collaborators() {
         <Reveal>
           <div className="flex items-center gap-4">
             <span className="h-px flex-1 bg-border" />
-            <span className="eyebrow text-graphite/60">Colaboradores</span>
+            <span className="eyebrow text-graphite/60">Acompañan</span>
             <span className="h-px flex-1 bg-border" />
           </div>
         </Reveal>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {collaborators.map((c, i) => (
             <Reveal key={c.name} delay={i * 0.08}>
               <div className="border border-border bg-background p-6 text-center transition-colors hover:border-gold/40">
