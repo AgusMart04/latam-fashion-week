@@ -161,7 +161,18 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-ivory/15 pt-8 text-xs uppercase tracking-[0.24em] text-ivory/50 sm:flex-row sm:items-center">
           <div>© {year} LATAMFW. Todos los derechos reservados.</div>
-          <div>latamfwargentina@gmail.com</div>
+          <div className="flex flex-wrap gap-4">
+            <Link to="/privacidad" className="transition-colors hover:text-ivory">
+              Privacidad
+            </Link>
+            <Link to="/politica-cookies" className="transition-colors hover:text-ivory">
+              Cookies
+            </Link>
+            <Link to="/aviso-legal" className="transition-colors hover:text-ivory">
+              Aviso Legal
+            </Link>
+            <span>latamfwargentina@gmail.com</span>
+          </div>
         </div>
       </div>
     </footer>

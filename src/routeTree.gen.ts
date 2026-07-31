@@ -10,16 +10,24 @@
 
 import { Route as rootRouteImport } from "./routes/__root"
 import { Route as IndexRouteImport } from "./routes/index"
+import { Route as AvisoLegalRouteImport } from "./routes/aviso-legal"
 import { Route as ContactoRouteImport } from "./routes/contacto"
 import { Route as DirectoRouteImport } from "./routes/directo"
 import { Route as EntradasRouteImport } from "./routes/entradas"
 import { Route as EventoRouteImport } from "./routes/evento"
 import { Route as ExperienciaRouteImport } from "./routes/experiencia"
+import { Route as PoliticaCookiesRouteImport } from "./routes/politica-cookies"
 import { Route as PostulacionesRouteImport } from "./routes/postulaciones"
+import { Route as PrivacidadRouteImport } from "./routes/privacidad"
 
 const IndexRoute = IndexRouteImport.update({
   id: "/",
   path: "/",
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AvisoLegalRoute = AvisoLegalRouteImport.update({
+  id: "/aviso-legal",
+  path: "/aviso-legal",
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoRoute = ContactoRouteImport.update({
@@ -47,78 +55,109 @@ const ExperienciaRoute = ExperienciaRouteImport.update({
   path: "/experiencia",
   getParentRoute: () => rootRouteImport,
 } as any)
+const PoliticaCookiesRoute = PoliticaCookiesRouteImport.update({
+  id: "/politica-cookies",
+  path: "/politica-cookies",
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PostulacionesRoute = PostulacionesRouteImport.update({
   id: "/postulaciones",
   path: "/postulaciones",
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacidadRoute = PrivacidadRouteImport.update({
+  id: "/privacidad",
+  path: "/privacidad",
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
+  "/aviso-legal": typeof AvisoLegalRoute
   "/contacto": typeof ContactoRoute
   "/directo": typeof DirectoRoute
   "/entradas": typeof EntradasRoute
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
+  "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
+  "/privacidad": typeof PrivacidadRoute
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
+  "/aviso-legal": typeof AvisoLegalRoute
   "/contacto": typeof ContactoRoute
   "/directo": typeof DirectoRoute
   "/entradas": typeof EntradasRoute
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
+  "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
+  "/privacidad": typeof PrivacidadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   "/": typeof IndexRoute
+  "/aviso-legal": typeof AvisoLegalRoute
   "/contacto": typeof ContactoRoute
   "/directo": typeof DirectoRoute
   "/entradas": typeof EntradasRoute
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
+  "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
+  "/privacidad": typeof PrivacidadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | "/"
+    | "/aviso-legal"
     | "/contacto"
     | "/directo"
     | "/entradas"
     | "/evento"
     | "/experiencia"
+    | "/politica-cookies"
     | "/postulaciones"
+    | "/privacidad"
   fileRoutesByTo: FileRoutesByTo
   to:
     | "/"
+    | "/aviso-legal"
     | "/contacto"
     | "/directo"
     | "/entradas"
     | "/evento"
     | "/experiencia"
+    | "/politica-cookies"
     | "/postulaciones"
+    | "/privacidad"
   id:
     | "__root__"
     | "/"
+    | "/aviso-legal"
     | "/contacto"
     | "/directo"
     | "/entradas"
     | "/evento"
     | "/experiencia"
+    | "/politica-cookies"
     | "/postulaciones"
+    | "/privacidad"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AvisoLegalRoute: typeof AvisoLegalRoute
   ContactoRoute: typeof ContactoRoute
   DirectoRoute: typeof DirectoRoute
   EntradasRoute: typeof EntradasRoute
   EventoRoute: typeof EventoRoute
   ExperienciaRoute: typeof ExperienciaRoute
+  PoliticaCookiesRoute: typeof PoliticaCookiesRoute
   PostulacionesRoute: typeof PostulacionesRoute
+  PrivacidadRoute: typeof PrivacidadRoute
 }
 
 declare module "@tanstack/react-router" {
@@ -128,6 +167,13 @@ declare module "@tanstack/react-router" {
       path: "/"
       fullPath: "/"
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/aviso-legal": {
+      id: "/aviso-legal"
+      path: "/aviso-legal"
+      fullPath: "/aviso-legal"
+      preLoaderRoute: typeof AvisoLegalRouteImport
       parentRoute: typeof rootRouteImport
     }
     "/contacto": {
@@ -165,6 +211,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof ExperienciaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/politica-cookies": {
+      id: "/politica-cookies"
+      path: "/politica-cookies"
+      fullPath: "/politica-cookies"
+      preLoaderRoute: typeof PoliticaCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     "/postulaciones": {
       id: "/postulaciones"
       path: "/postulaciones"
@@ -172,17 +225,27 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof PostulacionesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/privacidad": {
+      id: "/privacidad"
+      path: "/privacidad"
+      fullPath: "/privacidad"
+      preLoaderRoute: typeof PrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AvisoLegalRoute: AvisoLegalRoute,
   ContactoRoute: ContactoRoute,
   DirectoRoute: DirectoRoute,
   EntradasRoute: EntradasRoute,
   EventoRoute: EventoRoute,
   ExperienciaRoute: ExperienciaRoute,
+  PoliticaCookiesRoute: PoliticaCookiesRoute,
   PostulacionesRoute: PostulacionesRoute,
+  PrivacidadRoute: PrivacidadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
