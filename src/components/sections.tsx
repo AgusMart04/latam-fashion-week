@@ -2063,7 +2063,7 @@ const FAQS = [
   },
   {
     q: "¿Cómo contactar al equipo?",
-    a: "Vía formulario, email (latamfwargentina@gmail.com), Instagram (@latinoamericafashionweekarg) o los teléfonos oficiales en Argentina y Brasil.",
+    a: "Vía formulario, email (latamfwargentina@gmail.com) o Instagram (@latinoamericafashionweekarg).",
   },
 ];
 
@@ -2160,19 +2160,6 @@ export function Contact() {
               href: "https://instagram.com/latinoamericafashionweekarg",
               span: 3,
             },
-            {
-              label: "Argentina",
-              value: "+54 9 3795 58-7617",
-              href: "tel:+5493795587617",
-              span: 2,
-            },
-            {
-              label: "Argentina 2",
-              value: "+54 9 2645 07-5888",
-              href: "tel:+5492645075888",
-              span: 2,
-            },
-            { label: "Brasil", value: "+55 11 95058-4800", href: "tel:+5511950584800", span: 2 },
           ].map((c, i) => (
             <Reveal
               key={c.label}
