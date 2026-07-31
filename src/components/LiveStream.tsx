@@ -5,10 +5,9 @@ import { Reveal } from "./sections";
 /* ---- constants ---- */
 
 const STREAM_DATE = new Date("2026-09-08T19:00:00-03:00").getTime();
-const VALID_EMAIL = "LatamFWStaff";
-const VALID_TICKET_ID = "072026";
 const STORAGE_KEY = "latamfw_stream_access";
 const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 horas
+const CSV_URL = "/entradas.csv";
 const isLiveDay = Date.now() >= STREAM_DATE;
 
 /* ---- countdown ---- */
@@ -74,6 +73,35 @@ const SCHEDULE = [
   },
 ];
 
+/* ---- csv parser ---- */
+
+function parseCSV(text: string): Map<string, string> {
+  const buyers = new Map<string, string>();
+  const lines = text.split("\n");
+  if (lines.length < 2) return buyers;
+
+  const headers = lines[0].split(",").map((h) => h.trim().toLowerCase());
+  const emailIdx = headers.findIndex((h) => h === "mail");
+  const purchaseIdIdx = headers.findIndex((h) => h === "id de compra");
+
+  if (emailIdx === -1 || purchaseIdIdx === -1) return buyers;
+
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+
+    const cols = line.split(",");
+    const email = (cols[emailIdx] || "").trim().toLowerCase();
+    const purchaseId = (cols[purchaseIdIdx] || "").trim();
+
+    if (email && purchaseId) {
+      buyers.set(email, purchaseId);
+    }
+  }
+
+  return buyers;
+}
+
 /* ---- component ---- */
 
 export function LiveStream() {
@@ -85,16 +113,38 @@ export function LiveStream() {
   const [loading, setLoading] = useState(false);
   const [showTicket, setShowTicket] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [buyers, setBuyers] = useState<Map<string, string>>(new Map());
+  const [csvError, setCsvError] = useState(false);
+  const [csvLoading, setCsvLoading] = useState(true);
 
   useEffect(() => {
+    fetch(CSV_URL)
+      .then((res) => {
+        if (!res.ok) throw new Error("CSV not found");
+        return res.text();
+      })
+      .then((text) => {
+        setBuyers(parseCSV(text));
+        setCsvLoading(false);
+      })
+      .catch(() => {
+        setCsvError(true);
+        setCsvLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (buyers.size === 0) return;
+
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const data = JSON.parse(stored);
         const elapsed = Date.now() - data.timestamp;
+        const storedPurchaseId = buyers.get(data.email?.toLowerCase());
         if (
-          data.email === VALID_EMAIL &&
-          data.ticketId === VALID_TICKET_ID &&
+          storedPurchaseId &&
+          storedPurchaseId === data.purchaseId &&
           elapsed < SESSION_DURATION
         ) {
           setUnlocked(true);
@@ -105,7 +155,7 @@ export function LiveStream() {
     } catch {
       // localStorage unavailable or corrupted
     }
-  }, []);
+  }, [buyers]);
 
   const handleAuth = useCallback(
     (e: React.FormEvent) => {
@@ -114,11 +164,18 @@ export function LiveStream() {
       setAuthError(false);
 
       setTimeout(() => {
-        if (email === VALID_EMAIL && ticketId === VALID_TICKET_ID) {
+        const normalizedEmail = email.trim().toLowerCase();
+        const expectedPurchaseId = buyers.get(normalizedEmail);
+
+        if (expectedPurchaseId && expectedPurchaseId === ticketId.trim()) {
           try {
             localStorage.setItem(
               STORAGE_KEY,
-              JSON.stringify({ email, ticketId, timestamp: Date.now() }),
+              JSON.stringify({
+                email: normalizedEmail,
+                purchaseId: ticketId.trim(),
+                timestamp: Date.now(),
+              }),
             );
           } catch {
             // localStorage unavailable
@@ -130,7 +187,7 @@ export function LiveStream() {
         setLoading(false);
       }, 600);
     },
-    [email, ticketId],
+    [email, ticketId, buyers],
   );
 
   const handleLogout = useCallback(() => {
@@ -253,21 +310,28 @@ export function LiveStream() {
                         Ingrese sus credenciales para acceder a la transmisión en vivo.
                       </p>
 
+                      {csvError && (
+                        <p className="mt-2 text-xs text-red-400">
+                          Error al cargar datos. Intente recargar la página.
+                        </p>
+                      )}
+
                       <form onSubmit={handleAuth} className="mt-5 space-y-3 sm:mt-8 sm:space-y-4">
                         <div>
                           <label htmlFor="stream-email" className="sr-only">
-                            Email
+                            Email de compra
                           </label>
                           <input
                             id="stream-email"
                             type="text"
-                            placeholder="Email"
+                            placeholder="Email con el que compró"
                             autoComplete="off"
                             value={email}
                             onChange={(e) => {
                               setEmail(e.target.value);
                               setAuthError(false);
                             }}
+                            disabled={csvLoading}
                             className={`w-full rounded-none border bg-white/5 px-3 py-2.5 text-sm text-ivory placeholder-ivory/30 outline-none transition-colors focus:border-gold sm:px-4 sm:py-3 ${
                               authError ? "border-red-500" : "border-white/15"
                             }`}
@@ -275,18 +339,19 @@ export function LiveStream() {
                         </div>
                         <div className="relative">
                           <label htmlFor="stream-ticket" className="sr-only">
-                            ID de entrada
+                            ID de compra
                           </label>
                           <input
                             id="stream-ticket"
                             type={showTicket ? "text" : "password"}
-                            placeholder="ID de entrada"
+                            placeholder="ID de compra"
                             autoComplete="off"
                             value={ticketId}
                             onChange={(e) => {
                               setTicketId(e.target.value);
                               setAuthError(false);
                             }}
+                            disabled={csvLoading}
                             className={`w-full border bg-white/5 px-3 py-2.5 pr-10 text-sm text-ivory placeholder-ivory/30 outline-none transition-colors focus:border-gold sm:px-4 sm:py-3 ${
                               authError ? "border-red-500" : "border-white/15"
                             }`}
@@ -295,7 +360,7 @@ export function LiveStream() {
                             type="button"
                             onClick={() => setShowTicket(!showTicket)}
                             aria-label={
-                              showTicket ? "Ocultar ID de entrada" : "Mostrar ID de entrada"
+                              showTicket ? "Ocultar ID de compra" : "Mostrar ID de compra"
                             }
                             className="absolute right-3 top-1/2 -translate-y-1/2 text-ivory/40 transition-colors hover:text-ivory/70 sm:right-3"
                             tabIndex={-1}
@@ -339,16 +404,16 @@ export function LiveStream() {
 
                         {authError && (
                           <p className="text-xs text-red-400">
-                            Credenciales incorrectas. Intente nuevamente.
+                            Email o ID de compra incorrectos. Intente nuevamente.
                           </p>
                         )}
 
                         <button
                           type="submit"
-                          disabled={loading || !email || !ticketId}
+                          disabled={loading || csvLoading || !email || !ticketId}
                           className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-40"
                         >
-                          {loading ? "Accediendo..." : "Acceder"}
+                          {loading ? "Accediendo..." : csvLoading ? "Cargando datos..." : "Acceder"}
                         </button>
                       </form>
                     </div>
