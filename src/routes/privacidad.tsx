@@ -97,9 +97,7 @@ function PrivacidadPage() {
               <li>Instagram</li>
               <li>Portfolio (URL)</li>
               <li>Experiencia</li>
-              <li>Contrato de confidencialidad firmado (archivo PDF o DOCX) *</li>
               <li>Formulario + Ficha Médica completado (archivo PDF o DOCX) *</li>
-              <li>Aceptación del contrato de confidencialidad *</li>
             </ul>
 
             <h3 className="mt-6 font-medium text-carbon">Maquillaje / Peinado</h3>
@@ -211,7 +209,7 @@ function PrivacidadPage() {
               5. Documentos y datos médicos
             </h2>
             <p>
-              Los documentos enviados (contratos firmados, fichas médicas, portafolios) serán
+              Los documentos enviados (fichas médicas, portafolios) serán
               utilizados exclusivamente para evaluar la participación en el evento y no serán
               compartidos públicamente sin autorización.
             </p>

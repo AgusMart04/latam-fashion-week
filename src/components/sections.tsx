@@ -1247,20 +1247,12 @@ function Field({
 
 function DynamicFields({
   purpose,
-  onContractFile,
   onFormFile,
-  contractFile,
   formFile,
-  contractAccepted,
-  onContractAccepted,
 }: {
   purpose: Purpose;
-  onContractFile?: (f: File | null) => void;
   onFormFile?: (f: File | null) => void;
-  contractFile?: File | null;
   formFile?: File | null;
-  contractAccepted?: boolean;
-  onContractAccepted?: (v: boolean) => void;
 }) {
   const base = (
     <>
@@ -1348,26 +1340,6 @@ function DynamicFields({
 
           <div className="flex flex-col gap-3">
             <a
-              href="/docs/modelos/CONTRATO DE CONFIDENCIALIDAD MODELOS.docx"
-              download
-              className="inline-flex items-center gap-2 border border-border px-4 py-3 text-[0.7rem] uppercase tracking-[0.2em] text-carbon hover:border-carbon transition-colors"
-            >
-              <svg
-                className="w-4 h-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
-                />
-              </svg>
-              Descargar Contrato de Confidencialidad
-            </a>
-            <a
               href="/docs/modelos/FORMULARIO + FICHA MEDICA LATAMFW.docx"
               download
               className="inline-flex items-center gap-2 border border-border px-4 py-3 text-[0.7rem] uppercase tracking-[0.2em] text-carbon hover:border-carbon transition-colors"
@@ -1387,46 +1359,6 @@ function DynamicFields({
               </svg>
               Descargar Formulario + Ficha Médica
             </a>
-          </div>
-
-          <label className="flex items-start gap-3 cursor-pointer">
-            <input
-              type="checkbox"
-              name="contractAccepted"
-              checked={contractAccepted || false}
-              onChange={(e) => onContractAccepted?.(e.target.checked)}
-              required
-              className="mt-1 h-4 w-4 accent-gold"
-            />
-            <span className="text-sm text-graphite">
-              Leí y acepto el <strong className="text-carbon">contrato de confidencialidad</strong>.
-            </span>
-          </label>
-
-          <div>
-            <label className="eyebrow mb-2 block">Contrato de Confidencialidad firmado *</label>
-            <input
-              type="file"
-              name="contractFile"
-              accept=".pdf,.doc,.docx"
-              required
-              onChange={(e) => {
-                const file = e.target.files?.[0] ?? null;
-                if (file) {
-                  const err = validateFile(file);
-                  if (err) {
-                    alert(err);
-                    e.target.value = "";
-                    return;
-                  }
-                }
-                onContractFile?.(file);
-              }}
-              className="w-full text-sm text-graphite file:mr-4 file:py-2 file:px-4 file:border file:border-border file:text-[0.7rem] file:uppercase file:tracking-[0.2em] file:text-carbon file:hover:border-carbon file:transition-colors file:bg-transparent"
-            />
-            {contractFile && (
-              <span className="mt-1 block text-xs text-graphite">{contractFile.name}</span>
-            )}
           </div>
 
           <div>
@@ -1545,15 +1477,11 @@ export function SmartForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
-  const [contractFile, setContractFile] = useState<File | null>(null);
   const [formFile, setFormFile] = useState<File | null>(null);
-  const [contractAccepted, setContractAccepted] = useState(false);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
 
   useEffect(() => {
-    setContractFile(null);
     setFormFile(null);
-    setContractAccepted(false);
     setPrivacyAccepted(false);
     setError(false);
   }, [purpose]);
@@ -1580,8 +1508,6 @@ export function SmartForm() {
 
     try {
       if (purpose === "model") {
-        if (contractFile) data.contractFileBase64 = await fileToBase64(contractFile);
-        data.contractFileName = contractFile?.name || "";
         if (formFile) data.formFileBase64 = await fileToBase64(formFile);
         data.formFileName = formFile?.name || "";
       }
@@ -1663,12 +1589,8 @@ export function SmartForm() {
                     >
                       <DynamicFields
                         purpose={purpose}
-                        onContractFile={setContractFile}
                         onFormFile={setFormFile}
-                        contractFile={contractFile}
                         formFile={formFile}
-                        contractAccepted={contractAccepted}
-                        onContractAccepted={setContractAccepted}
                       />
                     </motion.div>
                   )}
