@@ -7,7 +7,7 @@ export const Route = createFileRoute("/privacidad")({
       {
         name: "description",
         content:
-          "Conocé cómo Latinoamérica Fashion Week Argentina recopila, usa y protege tus datos personales.",
+          "Conoce cómo Latinoamérica Fashion Week Argentina recopila, usa y protege tus datos personales.",
       },
       { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
       { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
@@ -23,7 +23,7 @@ function PrivacidadPage() {
         <h1 className="font-display text-4xl tracking-tight text-carbon lg:text-5xl">
           Política de Privacidad
         </h1>
-        <p className="mt-4 text-sm text-graphite">Última actualización: julio 2026</p>
+        <p className="mt-4 text-sm text-graphite">Última actualización: agosto 2026</p>
 
         <div className="prose mt-10 space-y-8 text-base leading-relaxed text-graphite">
           {/* 1 */}
@@ -319,7 +319,7 @@ function PrivacidadPage() {
           {/* 11 */}
           <section>
             <h2 className="font-display text-2xl text-carbon">11. Derechos del usuario</h2>
-            <p>Podés ejercer los siguientes derechos:</p>
+            <p>Puedes ejercer los siguientes derechos:</p>
             <ul className="mt-3 list-inside list-disc space-y-1">
               <li>Acceso a tus datos personales</li>
               <li>Rectificación de datos inexactos</li>
@@ -365,7 +365,7 @@ function PrivacidadPage() {
           <section>
             <h2 className="font-display text-2xl text-carbon">14. Contacto</h2>
             <p>
-              Si tenés preguntas sobre esta política de privacidad, contactanos a través de{" "}
+              Si tienes preguntas sobre esta política de privacidad, contactanos a través de{" "}
               <a
                 href="mailto:latamfwargentina@gmail.com"
                 className="underline transition-colors hover:text-gold"

@@ -23,12 +23,12 @@ function AvisoLegalPage() {
         <h1 className="font-display text-4xl tracking-tight text-carbon lg:text-5xl">
           Aviso Legal
         </h1>
-        <p className="mt-4 text-sm text-graphite">Última actualización: julio 2026</p>
+        <p className="mt-4 text-sm text-graphite">Última actualización: agosto 2026</p>
 
         <div className="prose mt-10 space-y-8 text-base leading-relaxed text-graphite">
           <section>
-            <h2 className="font-display text-2xl text-carbon">1. Propietario del sitio</h2>
-            <p>El sitio web latinoamericafashionweekargentina.com es propiedad de:</p>
+            <h2 className="font-display text-2xl text-carbon">1. Representación del sitio</h2>
+            <p>El sitio web latinoamericafashionweekargentina.com es administrado y representado por el equipo organizador de Latinoamérica Fashion Week Argentina 2026.</p>
             <div className="mt-3 border border-border p-4">
               <p><strong>Denominación:</strong> Latinoamérica Fashion Week Argentina 2026</p>
               <p>
@@ -142,7 +142,7 @@ function AvisoLegalPage() {
           <section>
             <h2 className="font-display text-2xl text-carbon">9. Contacto</h2>
             <p>
-              Si tenés preguntas sobre este aviso legal, contactanos a través de{" "}
+              Si tienes preguntas sobre este aviso legal, contactanos a través de{" "}
               <a
                 href="mailto:latamfwargentina@gmail.com"
                 className="underline transition-colors hover:text-gold"

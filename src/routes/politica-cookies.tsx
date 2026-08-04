@@ -23,7 +23,7 @@ function PoliticaCookiesPage() {
         <h1 className="font-display text-4xl tracking-tight text-carbon lg:text-5xl">
           Política de Cookies
         </h1>
-        <p className="mt-4 text-sm text-graphite">Última actualización: julio 2026</p>
+        <p className="mt-4 text-sm text-graphite">Última actualización: agosto 2026</p>
 
         <div className="prose mt-10 space-y-8 text-base leading-relaxed text-graphite">
           <section>
@@ -195,7 +195,7 @@ function PoliticaCookiesPage() {
           <section>
             <h2 className="font-display text-2xl text-carbon">Contacto</h2>
             <p>
-              Si tenés preguntas sobre esta política de cookies, contactanos a través de{" "}
+              Si tienes preguntas sobre esta política de cookies, contactanos a través de{" "}
               <a
                 href="mailto:latamfwargentina@gmail.com"
                 className="underline transition-colors hover:text-gold"
