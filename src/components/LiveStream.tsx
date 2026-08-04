@@ -265,7 +265,7 @@ export function LiveStream() {
               {/* Player */}
               {showPlayer ? (
                 <iframe
-                  src="https://www.youtube.com/embed?listType=channel_list&list=UC-placeholder"
+                  src="https://www.youtube-nocookie.com/embed/aQNwMJzDB0s?controls=1&modestbranding=1&rel=0&disablekb=1"
                   title="LATAMFW 2026 — Transmisión en Vivo"
                   className="absolute inset-0 h-full w-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
