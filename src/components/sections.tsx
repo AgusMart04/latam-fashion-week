@@ -1340,7 +1340,7 @@ function DynamicFields({
 
           <div className="flex flex-col gap-3">
             <a
-              href="/docs/modelos/FORMULARIO + FICHA MEDICA LATAMFW.docx"
+              href="/docs/modelos/FORMULARIO-FICHA-MEDICA-LATAMFW.docx"
               download
               className="inline-flex items-center gap-2 border border-border px-4 py-3 text-[0.7rem] uppercase tracking-[0.2em] text-carbon hover:border-carbon transition-colors"
             >
