@@ -11,8 +11,8 @@ export const Route = createFileRoute("/inscripciones")({
         content:
           "Inscribite en LATAMFW 2026. Completa el formulario para participar como modelo, diseñador, expositor o patrocinador.",
       },
-      { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
-      { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
+      { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-inscripciones.jpg" },
+      { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-inscripciones.jpg" },
     ],
   }),
   component: InscripcionesPage,
