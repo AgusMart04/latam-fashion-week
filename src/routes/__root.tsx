@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack/react-router";
 import { Analytics } from "@vercel/analytics/react";
 import { useState, useEffect } from "react";
 
@@ -107,6 +107,8 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isStandalone = pathname === "/inscripciones";
 
   useEffect(() => {
     setAnalyticsEnabled(localStorage.getItem("cookie-consent") === "accepted");
@@ -115,10 +117,10 @@ function RootComponent() {
   return (
     <div className="bg-background text-foreground">
       <HeadContent />
-      <Navigation />
+      {!isStandalone && <Navigation />}
       <Outlet />
-      <Footer />
-      <CookieConsent />
+      {!isStandalone && <Footer />}
+      {!isStandalone && <CookieConsent />}
       {analyticsEnabled && <Analytics />}
       <Scripts />
     </div>

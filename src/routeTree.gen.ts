@@ -16,6 +16,7 @@ import { Route as DirectoRouteImport } from "./routes/directo"
 import { Route as EntradasRouteImport } from "./routes/entradas"
 import { Route as EventoRouteImport } from "./routes/evento"
 import { Route as ExperienciaRouteImport } from "./routes/experiencia"
+import { Route as InscripcionesRouteImport } from "./routes/inscripciones"
 import { Route as PoliticaCookiesRouteImport } from "./routes/politica-cookies"
 import { Route as PostulacionesRouteImport } from "./routes/postulaciones"
 import { Route as PrivacidadRouteImport } from "./routes/privacidad"
@@ -55,6 +56,11 @@ const ExperienciaRoute = ExperienciaRouteImport.update({
   path: "/experiencia",
   getParentRoute: () => rootRouteImport,
 } as any)
+const InscripcionesRoute = InscripcionesRouteImport.update({
+  id: "/inscripciones",
+  path: "/inscripciones",
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PoliticaCookiesRoute = PoliticaCookiesRouteImport.update({
   id: "/politica-cookies",
   path: "/politica-cookies",
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   "/entradas": typeof EntradasRoute
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
+  "/inscripciones": typeof InscripcionesRoute
   "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
   "/privacidad": typeof PrivacidadRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   "/entradas": typeof EntradasRoute
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
+  "/inscripciones": typeof InscripcionesRoute
   "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
   "/privacidad": typeof PrivacidadRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   "/entradas": typeof EntradasRoute
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
+  "/inscripciones": typeof InscripcionesRoute
   "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
   "/privacidad": typeof PrivacidadRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | "/entradas"
     | "/evento"
     | "/experiencia"
+    | "/inscripciones"
     | "/politica-cookies"
     | "/postulaciones"
     | "/privacidad"
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | "/entradas"
     | "/evento"
     | "/experiencia"
+    | "/inscripciones"
     | "/politica-cookies"
     | "/postulaciones"
     | "/privacidad"
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | "/entradas"
     | "/evento"
     | "/experiencia"
+    | "/inscripciones"
     | "/politica-cookies"
     | "/postulaciones"
     | "/privacidad"
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   EntradasRoute: typeof EntradasRoute
   EventoRoute: typeof EventoRoute
   ExperienciaRoute: typeof ExperienciaRoute
+  InscripcionesRoute: typeof InscripcionesRoute
   PoliticaCookiesRoute: typeof PoliticaCookiesRoute
   PostulacionesRoute: typeof PostulacionesRoute
   PrivacidadRoute: typeof PrivacidadRoute
@@ -211,6 +224,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof ExperienciaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/inscripciones": {
+      id: "/inscripciones"
+      path: "/inscripciones"
+      fullPath: "/inscripciones"
+      preLoaderRoute: typeof InscripcionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     "/politica-cookies": {
       id: "/politica-cookies"
       path: "/politica-cookies"
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   EntradasRoute: EntradasRoute,
   EventoRoute: EventoRoute,
   ExperienciaRoute: ExperienciaRoute,
+  InscripcionesRoute: InscripcionesRoute,
   PoliticaCookiesRoute: PoliticaCookiesRoute,
   PostulacionesRoute: PostulacionesRoute,
   PrivacidadRoute: PrivacidadRoute,

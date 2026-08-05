@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://latam-fashion-week-demo.vercel.app/sitemap.xml
