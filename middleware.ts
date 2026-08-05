@@ -1,5 +1,5 @@
 export const config = {
-  matcher: ["/directo"],
+  matcher: ["/directo", "/inscripciones"],
 };
 
 export default async function middleware(request: Request): Promise<Response> {
@@ -7,10 +7,19 @@ export default async function middleware(request: Request): Promise<Response> {
   const res = await fetch(url.origin);
   const html = await res.text();
 
-  const modified = html.replace(
-    /content="https?:\/\/[^"]*\/og-image\.jpg"/g,
-    (match) => match.replace("og-image.jpg", "og-directo.jpg"),
-  );
+  let modified = html;
+
+  if (url.pathname === "/directo") {
+    modified = html.replace(
+      /content="https?:\/\/[^"]*\/og-image\.jpg"/g,
+      (match) => match.replace("og-image.jpg", "og-directo.jpg"),
+    );
+  } else if (url.pathname === "/inscripciones") {
+    modified = html.replace(
+      /content="https?:\/\/[^"]*\/og-image\.jpg"/g,
+      (match) => match.replace("og-image.jpg", "og-inscripciones.jpg"),
+    );
+  }
 
   return new Response(modified, {
     status: 200,
