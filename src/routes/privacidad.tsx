@@ -7,7 +7,7 @@ export const Route = createFileRoute("/privacidad")({
       {
         name: "description",
         content:
-          "Conoce cómo Latinoamérica Fashion Week Argentina recopila, usa y protege tus datos personales.",
+          "Conozca cómo Latinoamérica Fashion Week Argentina recopila, usa y protege tus datos personales.",
       },
       { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
       { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
@@ -56,7 +56,7 @@ function PrivacidadPage() {
             </h2>
             <p>
               En el marco de Latinoamérica Fashion Week Argentina 2026 (en adelante, «LATAMFW»),
-              recolectamos la siguiente información personal cuando completás formularios en nuestro
+              recolectamos la siguiente información personal cuando completas formularios en nuestro
               sitio:
             </p>
 
@@ -251,7 +251,7 @@ function PrivacidadPage() {
             <h2 className="font-display text-2xl text-carbon">7. Cookies y tecnologías de rastreo</h2>
             <p>
               Utilizamos cookies y tecnologías similares para analizar el tráfico del sitio y
-              mejorar tu experiencia. Podés consultar nuestra{" "}
+              mejorar tu experiencia. Puede consultar nuestra{" "}
               <a href="/politica-cookies" className="underline transition-colors hover:text-gold">
                 Política de Cookies
               </a>{" "}
@@ -330,7 +330,7 @@ function PrivacidadPage() {
               <li>Retirar el consentimiento en cualquier momento</li>
             </ul>
             <p className="mt-3">
-              Para ejercer estos derechos, escribinos a{" "}
+              Para ejercer estos derechos, escríbanos a{" "}
               <a
                 href="mailto:latamfwargentina@gmail.com"
                 className="underline transition-colors hover:text-gold"
@@ -365,7 +365,7 @@ function PrivacidadPage() {
           <section>
             <h2 className="font-display text-2xl text-carbon">14. Contacto</h2>
             <p>
-              Si tienes preguntas sobre esta política de privacidad, contactanos a través de{" "}
+              Si tienes preguntas sobre esta política de privacidad, contáctenos a través de{" "}
               <a
                 href="mailto:latamfwargentina@gmail.com"
                 className="underline transition-colors hover:text-gold"

@@ -348,3 +348,7 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+#f-height:invalid:not(:placeholder-shown) ~ .error-msg {
+  display: block;
+}

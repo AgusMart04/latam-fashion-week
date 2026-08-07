@@ -1323,7 +1323,27 @@ function DynamicFields({
       <>
         {base}
         <Field label="Edad" name="age" type="number" required />
-        <Field label="Altura (cm)" name="height" type="number" required />
+        <label htmlFor="f-height" className="block">
+          <span className="eyebrow mb-2 block">
+            Altura (ej: 170) *
+          </span>
+          <input
+            id="f-height"
+            name="height"
+            type="tel"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            maxLength={3}
+            autoComplete="off"
+            title="Solo números, ej: 170"
+            placeholder="170"
+            required
+            className="peer w-full border-b border-border bg-transparent px-0 py-3 text-carbon outline-none transition-colors focus:border-carbon"
+          />
+          <span className="error-msg mt-1 block text-xs text-destructive hidden">
+            Solo números, sin puntos ni comas
+          </span>
+        </label>
         <Field label="País" name="country" maxLength={60} required />
         <Field label="Instagram" name="ig" maxLength={50} />
         <Field label="Portfolio (URL)" name="portfolio" type="url" />

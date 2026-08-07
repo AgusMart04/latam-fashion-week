@@ -7,7 +7,7 @@ export const Route = createFileRoute("/politica-cookies")({
       {
         name: "description",
         content:
-          "Conocé qué cookies utiliza Latinoamérica Fashion Week Argentina y cómo puedes gestionarlas.",
+          "Conozca qué cookies utiliza Latinoamérica Fashion Week Argentina y cómo puede gestionarlas.",
       },
       { property: "og:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
       { name: "twitter:image", content: "https://latam-fashion-week-demo.vercel.app/og-image.jpg" },
@@ -30,7 +30,7 @@ function PoliticaCookiesPage() {
             <h2 className="font-display text-2xl text-carbon">¿Qué son las cookies?</h2>
             <p>
               Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando
-              visitás un sitio web. Sirven para mejorar la experiencia de navegación, recordar
+              visitas un sitio web. Sirven para mejorar la experiencia de navegación, recordar
               preferencias y analizar cómo se utiliza el sitio.
             </p>
           </section>
@@ -75,7 +75,7 @@ function PoliticaCookiesPage() {
             </h2>
             <p>
               Estas cookies nos permiten analizar el tráfico y comportamiento de los usuarios para
-              mejorar el sitio. Solo se activan si aceptás su uso.
+              mejorar el sitio. Solo se activan si acepta su uso.
             </p>
 
             <div className="mt-4 space-y-4">
@@ -143,12 +143,12 @@ function PoliticaCookiesPage() {
           <section>
             <h2 className="font-display text-2xl text-carbon">Gestionar tus preferencias</h2>
             <p>
-              Podés aceptar o rechazar las cookies a través del aviso que aparece al visitar el
-              sitio por primera vez. Si rechazás las cookies de analítica, Google Analytics y Vercel
+              Puede aceptar o rechazar las cookies a través del aviso que aparece al visitar el
+              sitio por primera vez. Si rechaza las cookies de analítica, Google Analytics y Vercel
               Analytics no se cargarán.
             </p>
             <p className="mt-3">
-              También podés configurar tu navegador para bloquear o eliminar cookies. Tené en cuenta
+              También puede configurar su navegador para bloquear o eliminar cookies. Tenga en cuenta
               que algunas funcionalidades del sitio podrían dejar de funcionar correctamente.
             </p>
           </section>
@@ -157,7 +157,7 @@ function PoliticaCookiesPage() {
             <h2 className="font-display text-2xl text-carbon">Cookies de terceros</h2>
             <p>
               Las cookies de Google Analytics y Vercel Analytics son gestionadas por sus respectivos
-              proveedores. No controlamos directamente estas cookies, pero podés gestionarlas desde
+              proveedores.               No controlamos directamente estas cookies, pero puede gestionarlas desde
               las herramientas que cada proveedor ofrece.
             </p>
             <ul className="mt-3 list-inside list-disc space-y-1">
@@ -195,7 +195,7 @@ function PoliticaCookiesPage() {
           <section>
             <h2 className="font-display text-2xl text-carbon">Contacto</h2>
             <p>
-              Si tienes preguntas sobre esta política de cookies, contactanos a través de{" "}
+              Si tienes preguntas sobre esta política de cookies, contáctenos a través de{" "}
               <a
                 href="mailto:latamfwargentina@gmail.com"
                 className="underline transition-colors hover:text-gold"
