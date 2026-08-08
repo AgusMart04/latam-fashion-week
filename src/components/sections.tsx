@@ -316,17 +316,16 @@ export function About() {
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
               {[
-                { code: "pe", country: "Perú", city: "Lima / Cusco", dates: "1 – 6 Sep" },
+                { code: "pe", country: "Perú", city: "Lima" },
                 {
                   code: "ar",
                   country: "Argentina",
                   city: "Corrientes",
-                  dates: "8 – 13 Sep",
                   active: true,
                 },
-                { code: "br", country: "Brasil", city: "Florianópolis", dates: "21 – 26 Sep" },
-                { code: "py", country: "Paraguay", city: "Asunción", dates: "28 – 30 Sep" },
-                { code: "bo", country: "Bolivia", city: "Santa Cruz", dates: "3 – 4 Nov" },
+                { code: "br", country: "Brasil", city: "Florianópolis" },
+                { code: "py", country: "Paraguay", city: "Asunción" },
+                { code: "bo", country: "Bolivia", city: "Santa Cruz" },
               ].map((item) => (
                 <div
                   key={item.country}
@@ -343,11 +342,6 @@ export function About() {
                   <div>
                     <div className="font-display text-lg text-carbon">{item.country}</div>
                     <div className="text-xs text-graphite mt-0.5">{item.city}</div>
-                    <div
-                      className={`text-xs mt-1 font-medium ${item.active ? "text-gold" : "text-graphite"}`}
-                    >
-                      {item.dates}
-                    </div>
                   </div>
                 </div>
               ))}
