@@ -171,6 +171,9 @@ export function Footer() {
             <Link to="/aviso-legal" className="transition-colors hover:text-ivory">
               Aviso Legal
             </Link>
+            <Link to="/terminos-y-condiciones" className="transition-colors hover:text-ivory">
+              Términos
+            </Link>
             <span>latamfwargentina@gmail.com</span>
           </div>
         </div>

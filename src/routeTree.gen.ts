@@ -20,6 +20,7 @@ import { Route as InscripcionesRouteImport } from "./routes/inscripciones"
 import { Route as PoliticaCookiesRouteImport } from "./routes/politica-cookies"
 import { Route as PostulacionesRouteImport } from "./routes/postulaciones"
 import { Route as PrivacidadRouteImport } from "./routes/privacidad"
+import { Route as TerminosYCondicionesRouteImport } from "./routes/terminos-y-condiciones"
 
 const IndexRoute = IndexRouteImport.update({
   id: "/",
@@ -76,6 +77,11 @@ const PrivacidadRoute = PrivacidadRouteImport.update({
   path: "/privacidad",
   getParentRoute: () => rootRouteImport,
 } as any)
+const TerminosYCondicionesRoute = TerminosYCondicionesRouteImport.update({
+  id: "/terminos-y-condiciones",
+  path: "/terminos-y-condiciones",
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
   "/privacidad": typeof PrivacidadRoute
+  "/terminos-y-condiciones": typeof TerminosYCondicionesRoute
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
   "/privacidad": typeof PrivacidadRoute
+  "/terminos-y-condiciones": typeof TerminosYCondicionesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
   "/privacidad": typeof PrivacidadRoute
+  "/terminos-y-condiciones": typeof TerminosYCondicionesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | "/politica-cookies"
     | "/postulaciones"
     | "/privacidad"
+    | "/terminos-y-condiciones"
   fileRoutesByTo: FileRoutesByTo
   to:
     | "/"
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | "/politica-cookies"
     | "/postulaciones"
     | "/privacidad"
+    | "/terminos-y-condiciones"
   id:
     | "__root__"
     | "/"
@@ -157,6 +168,7 @@ export interface FileRouteTypes {
     | "/politica-cookies"
     | "/postulaciones"
     | "/privacidad"
+    | "/terminos-y-condiciones"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +183,7 @@ export interface RootRouteChildren {
   PoliticaCookiesRoute: typeof PoliticaCookiesRoute
   PostulacionesRoute: typeof PostulacionesRoute
   PrivacidadRoute: typeof PrivacidadRoute
+  TerminosYCondicionesRoute: typeof TerminosYCondicionesRoute
 }
 
 declare module "@tanstack/react-router" {
@@ -252,6 +265,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof PrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/terminos-y-condiciones": {
+      id: "/terminos-y-condiciones"
+      path: "/terminos-y-condiciones"
+      fullPath: "/terminos-y-condiciones"
+      preLoaderRoute: typeof TerminosYCondicionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   PoliticaCookiesRoute: PoliticaCookiesRoute,
   PostulacionesRoute: PostulacionesRoute,
   PrivacidadRoute: PrivacidadRoute,
+  TerminosYCondicionesRoute: TerminosYCondicionesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
