@@ -135,10 +135,10 @@ export function Hero() {
             </div>
             <div className="flex items-baseline gap-3 text-ivory sm:flex-col sm:items-end sm:gap-1 sm:text-right">
               <span className="whitespace-nowrap font-display text-xl sm:text-4xl">
-                8 · 9 · 10 · 11 · 12 · 13
+                Septiembre 2026
               </span>
               <span className="text-xs uppercase tracking-[0.22em] text-ivory/80 sm:text-sm">
-                Sept 2026 — Corrientes
+                Corrientes
               </span>
             </div>
           </motion.div>
@@ -756,37 +756,37 @@ export function Metrics() {
 const DAYS = [
   {
     day: "Día 01",
-    date: "8 Sept",
+          date: "Septiembre",
     title: "Bienvenida",
     events: ["Bienvenida Oficial", "Recepción de Delegaciones", "Networking"],
   },
   {
     day: "Día 02",
-    date: "9 Sept",
+          date: "Septiembre",
     title: "Fitting",
     events: ["Fitting Day", "Pruebas de Vestuario", "Coordinación de Producción"],
   },
   {
     day: "Día 03",
-    date: "10 Sept",
+          date: "Septiembre",
     title: "Seminario",
     events: ["Seminario de Moda y Medios", "Conferencias", "Networking"],
   },
   {
     day: "Día 04",
-    date: "11 Sept",
+          date: "Septiembre",
     title: "Innovación",
     events: ["Jornada de Finanzas e Innovación", "Tecnología y Negocio", "Networking"],
   },
   {
     day: "Día 05",
-    date: "12 Sept",
+          date: "Septiembre",
     title: "Desfile Día 1",
     events: ["Desfiles Oficiales", "After LATAMFW"],
   },
   {
     day: "Día 06",
-    date: "13 Sept",
+          date: "Septiembre",
     title: "Desfile Día 2",
     events: ["Desfiles Internacionales", "Ceremonia de Cierre"],
   },

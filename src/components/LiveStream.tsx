@@ -37,37 +37,37 @@ function useStreamCountdown() {
 const SCHEDULE = [
   {
     day: "Día 01",
-    date: "8 Sept",
+    date: "Septiembre",
     title: "Bienvenida",
     events: ["Inauguración Oficial", "Recepción de Delegaciones", "Apertura del Evento"],
   },
   {
     day: "Día 02",
-    date: "9 Sept",
+    date: "Septiembre",
     title: "Fitting",
     events: ["Fitting Day", "Pruebas de Vestuario", "Coordinación de Producción"],
   },
   {
     day: "Día 03",
-    date: "10 Sept",
+    date: "Septiembre",
     title: "Seminario",
     events: ["Seminario de Moda y Medios", "Conferencias Magistrales", "Networking Internacional"],
   },
   {
     day: "Día 04",
-    date: "11 Sept",
+    date: "Septiembre",
     title: "Innovación",
     events: ["Jornada de Finanzas e Innovación", "Tecnología y Moda", "Mesa Redonda"],
   },
   {
     day: "Día 05",
-    date: "12 Sept",
+    date: "Septiembre",
     title: "Desfile Día 1",
     events: ["Desfiles Oficiales", "After LATAMFW", "Clausura Parcial"],
   },
   {
     day: "Día 06",
-    date: "13 Sept",
+    date: "Septiembre",
     title: "Desfile Día 2",
     events: ["Desfiles Internacionales", "Ceremonia de Cierre", "Gala Final"],
   },

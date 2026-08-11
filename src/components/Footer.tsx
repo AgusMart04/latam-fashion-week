@@ -38,7 +38,7 @@ export function Footer() {
             <div className="mt-8 flex items-center gap-4">
               <span className="gold-rule" />
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-ivory/60">
-                8 · 9 · 10 · 11 · 12 · 13 Sept · Corrientes, AR
+                Septiembre 2026 · Corrientes, AR
               </span>
             </div>
           </div>
