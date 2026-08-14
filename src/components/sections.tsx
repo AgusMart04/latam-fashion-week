@@ -117,7 +117,7 @@ export function Hero() {
             transition={{ duration: 1.4, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-[14vw] leading-[0.88] tracking-[-0.02em] text-ivory sm:text-[10vw] lg:text-[8.5rem] xl:text-[10rem]"
           >
-            Latino<span className="italic text-ivory">américa</span>
+            Latinoamérica
             <br />
             Fashion Week
           </motion.h1>
@@ -1170,6 +1170,9 @@ type Purpose =
   | "exhibitor"
   | "press"
   | "buyer"
+  | "production_assistant"
+  | "backstage_assistant"
+  | "wardrobe"
   | "other";
 
 const PURPOSE_OPTIONS: { value: Purpose; label: string }[] = [
@@ -1184,6 +1187,9 @@ const PURPOSE_OPTIONS: { value: Purpose; label: string }[] = [
   { value: "exhibitor", label: "Postularme como Expositor" },
   { value: "press", label: "Prensa" },
   { value: "buyer", label: "Buyer Profesional" },
+  { value: "production_assistant", label: "Asistente de Producción" },
+  { value: "backstage_assistant", label: "Asistente de Backstage" },
+  { value: "wardrobe", label: "Vestuarista" },
   { value: "other", label: "Otro" },
 ];
 
@@ -1472,6 +1478,24 @@ function DynamicFields({
         <Field label="Intereses comerciales" name="interests" as="textarea" maxLength={400} />
       </>
     ),
+    production_assistant: (
+      <>
+        {base}
+        <Field label="Mensaje" name="message" as="textarea" required maxLength={500} />
+      </>
+    ),
+    backstage_assistant: (
+      <>
+        {base}
+        <Field label="Mensaje" name="message" as="textarea" required maxLength={500} />
+      </>
+    ),
+    wardrobe: (
+      <>
+        {base}
+        <Field label="Mensaje" name="message" as="textarea" required maxLength={500} />
+      </>
+    ),
     other: (
       <>
         {base}
@@ -1483,10 +1507,10 @@ function DynamicFields({
   return <>{purpose ? map[purpose] : null}</>;
 }
 
-const SCRIPT_URL =
+const DEFAULT_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwVcU5dCxgMl9oCF575KXgs4V7NXgeHIE22QJVC-BxStdbH8kAnzN5u_EZ9eLrfHwfL/exec";
 
-export function SmartForm() {
+export function SmartForm({ scriptUrl }: { scriptUrl?: string } = {}) {
   const [purpose, setPurpose] = useState<Purpose>("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -1526,7 +1550,7 @@ export function SmartForm() {
         data.formFileName = formFile?.name || "";
       }
 
-      await fetch(SCRIPT_URL, {
+      await fetch(scriptUrl || DEFAULT_SCRIPT_URL, {
         method: "POST",
         body: JSON.stringify(data),
         mode: "no-cors",

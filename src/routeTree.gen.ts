@@ -17,6 +17,7 @@ import { Route as EntradasRouteImport } from "./routes/entradas"
 import { Route as EventoRouteImport } from "./routes/evento"
 import { Route as ExperienciaRouteImport } from "./routes/experiencia"
 import { Route as InscripcionesRouteImport } from "./routes/inscripciones"
+import { Route as InscripcionesFormosaRouteImport } from "./routes/inscripciones-formosa"
 import { Route as PoliticaCookiesRouteImport } from "./routes/politica-cookies"
 import { Route as PostulacionesRouteImport } from "./routes/postulaciones"
 import { Route as PrivacidadRouteImport } from "./routes/privacidad"
@@ -62,6 +63,11 @@ const InscripcionesRoute = InscripcionesRouteImport.update({
   path: "/inscripciones",
   getParentRoute: () => rootRouteImport,
 } as any)
+const InscripcionesFormosaRoute = InscripcionesFormosaRouteImport.update({
+  id: "/inscripciones-formosa",
+  path: "/inscripciones-formosa",
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PoliticaCookiesRoute = PoliticaCookiesRouteImport.update({
   id: "/politica-cookies",
   path: "/politica-cookies",
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
   "/inscripciones": typeof InscripcionesRoute
+  "/inscripciones-formosa": typeof InscripcionesFormosaRoute
   "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
   "/privacidad": typeof PrivacidadRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
   "/inscripciones": typeof InscripcionesRoute
+  "/inscripciones-formosa": typeof InscripcionesFormosaRoute
   "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
   "/privacidad": typeof PrivacidadRoute
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   "/evento": typeof EventoRoute
   "/experiencia": typeof ExperienciaRoute
   "/inscripciones": typeof InscripcionesRoute
+  "/inscripciones-formosa": typeof InscripcionesFormosaRoute
   "/politica-cookies": typeof PoliticaCookiesRoute
   "/postulaciones": typeof PostulacionesRoute
   "/privacidad": typeof PrivacidadRoute
@@ -137,6 +146,7 @@ export interface FileRouteTypes {
     | "/evento"
     | "/experiencia"
     | "/inscripciones"
+    | "/inscripciones-formosa"
     | "/politica-cookies"
     | "/postulaciones"
     | "/privacidad"
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | "/evento"
     | "/experiencia"
     | "/inscripciones"
+    | "/inscripciones-formosa"
     | "/politica-cookies"
     | "/postulaciones"
     | "/privacidad"
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | "/evento"
     | "/experiencia"
     | "/inscripciones"
+    | "/inscripciones-formosa"
     | "/politica-cookies"
     | "/postulaciones"
     | "/privacidad"
@@ -180,6 +192,7 @@ export interface RootRouteChildren {
   EventoRoute: typeof EventoRoute
   ExperienciaRoute: typeof ExperienciaRoute
   InscripcionesRoute: typeof InscripcionesRoute
+  InscripcionesFormosaRoute: typeof InscripcionesFormosaRoute
   PoliticaCookiesRoute: typeof PoliticaCookiesRoute
   PostulacionesRoute: typeof PostulacionesRoute
   PrivacidadRoute: typeof PrivacidadRoute
@@ -244,6 +257,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof InscripcionesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/inscripciones-formosa": {
+      id: "/inscripciones-formosa"
+      path: "/inscripciones-formosa"
+      fullPath: "/inscripciones-formosa"
+      preLoaderRoute: typeof InscripcionesFormosaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     "/politica-cookies": {
       id: "/politica-cookies"
       path: "/politica-cookies"
@@ -284,6 +304,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventoRoute: EventoRoute,
   ExperienciaRoute: ExperienciaRoute,
   InscripcionesRoute: InscripcionesRoute,
+  InscripcionesFormosaRoute: InscripcionesFormosaRoute,
   PoliticaCookiesRoute: PoliticaCookiesRoute,
   PostulacionesRoute: PostulacionesRoute,
   PrivacidadRoute: PrivacidadRoute,

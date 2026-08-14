@@ -108,7 +108,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const isStandalone = pathname === "/inscripciones";
+  const isStandalone = pathname === "/inscripciones" || pathname === "/inscripciones-formosa";
 
   useEffect(() => {
     setAnalyticsEnabled(localStorage.getItem("cookie-consent") === "accepted");
