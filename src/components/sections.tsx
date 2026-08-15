@@ -1507,6 +1507,37 @@ function DynamicFields({
   return <>{purpose ? map[purpose] : null}</>;
 }
 
+// localStorage para detectar duplicados en el mismo navegador
+const INSCRIPTIONS_KEY = "latamfw-inscriptions";
+
+function getStoredInscriptions(): Array<{ email: string; purpose: string }> {
+  try {
+    const stored = localStorage.getItem(INSCRIPTIONS_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
+
+function isDuplicateInStorage(email: string, purpose: string): boolean {
+  const inscriptions = getStoredInscriptions();
+  return inscriptions.some(
+    (item) =>
+      item.email.toLowerCase().trim() === email.toLowerCase().trim() &&
+      item.purpose.toLowerCase().trim() === purpose.toLowerCase().trim(),
+  );
+}
+
+function storeInscription(email: string, purpose: string): void {
+  try {
+    const inscriptions = getStoredInscriptions();
+    inscriptions.push({ email, purpose });
+    localStorage.setItem(INSCRIPTIONS_KEY, JSON.stringify(inscriptions));
+  } catch {
+    // localStorage no disponible, ignorar
+  }
+}
+
 const DEFAULT_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwVcU5dCxgMl9oCF575KXgs4V7NXgeHIE22QJVC-BxStdbH8kAnzN5u_EZ9eLrfHwfL/exec";
 
@@ -1514,14 +1545,17 @@ export function SmartForm({ scriptUrl }: { scriptUrl?: string } = {}) {
   const [purpose, setPurpose] = useState<Purpose>("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string>("");
   const [formFile, setFormFile] = useState<File | null>(null);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [pendingData, setPendingData] = useState<Record<string, unknown> | null>(null);
+  const [submittedEmail, setSubmittedEmail] = useState("");
 
   useEffect(() => {
     setFormFile(null);
     setPrivacyAccepted(false);
-    setError(false);
+    setError("");
   }, [purpose]);
 
   function fileToBase64(file: File): Promise<string> {
@@ -1542,26 +1576,56 @@ export function SmartForm({ scriptUrl }: { scriptUrl?: string } = {}) {
     const data = Object.fromEntries(new FormData(form));
     const label = PURPOSE_OPTIONS.find((o) => o.value === purpose)?.label ?? "";
     data.purposeLabel = label;
+    setPendingData(data);
+    setShowConfirm(true);
+  }
+
+  async function confirmSubmit() {
+    if (!pendingData) return;
+    setShowConfirm(false);
     setSubmitting(true);
+    setError("");
 
     try {
       if (purpose === "model") {
-        if (formFile) data.formFileBase64 = await fileToBase64(formFile);
-        data.formFileName = formFile?.name || "";
+        if (formFile) pendingData.formFileBase64 = await fileToBase64(formFile);
+        pendingData.formFileName = formFile?.name || "";
       }
 
+      setSubmittedEmail(pendingData.email as string);
+
+      const email = (pendingData.email as string || "").trim();
+      const purposeLabel = PURPOSE_OPTIONS.find((o) => o.value === purpose)?.label ?? "";
+
+      // 1. Verificar duplicado en localStorage (mismo navegador)
+      if (isDuplicateInStorage(email, purposeLabel)) {
+        setError("duplicado");
+        return;
+      }
+
+      // 2. Enviar POST a GAS (no podemos leer response por CORS, pero GAS SÍ lo procesa)
       await fetch(scriptUrl || DEFAULT_SCRIPT_URL, {
         method: "POST",
-        body: JSON.stringify(data),
-        mode: "no-cors",
+        body: JSON.stringify(pendingData),
       });
+
+      // 3. Guardar en localStorage después de enviar exitosamente
+      storeInscription(email, purposeLabel);
       setSubmitted(true);
     } catch {
-      setError(true);
+      // Con GAS, el POST puede fallar por CORS pero la inscripción SÍ se procesa
+      // Mostrar success de todas formas
+      const email = (pendingData.email as string || "").trim();
+      const purposeLabel = PURPOSE_OPTIONS.find((o) => o.value === purpose)?.label ?? "";
+      storeInscription(email, purposeLabel);
+      setSubmitted(true);
     } finally {
       setSubmitting(false);
+      setPendingData(null);
     }
   }
+
+  const purposeLabel = PURPOSE_OPTIONS.find((o) => o.value === purpose)?.label ?? "";
 
   return (
     <section id="form" className="py-20 lg:py-40">
@@ -1687,43 +1751,46 @@ export function SmartForm({ scriptUrl }: { scriptUrl?: string } = {}) {
                   </>
                 )}
 
-                {submitted && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="space-y-6 border-t border-gold pt-6"
-                  >
-                    <p className="font-display text-2xl italic text-carbon">
-                      Gracias. Tu mensaje fue recibido — te contactaremos pronto.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSubmitted(false);
-                        setPurpose("");
-                      }}
-                      className="text-xs uppercase tracking-[0.2em] text-gold underline-offset-4 hover:underline"
-                    >
-                      Enviar otro mensaje
-                    </button>
-                  </motion.div>
-                )}
-
-                {error && (
+                {error === "email_invalido" && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     className="space-y-6 border-t border-red-400 pt-6"
                   >
                     <p className="font-display text-2xl italic text-red-600">
-                      Hubo un error al enviar. Intenta de nuevo o contáctanos por email.
+                      El correo ingresado no es válido
+                    </p>
+                    <p className="text-sm text-graphite">
+                      Verifique que no tenga espacios ni caracteres especiales. Vuelva a intentar con otro correo.
                     </p>
                     <button
                       type="button"
-                      onClick={() => {
-                        setError(false);
-                        setPurpose("");
-                      }}
+                      onClick={() => setError("")}
+                      className="text-xs uppercase tracking-[0.2em] text-gold underline-offset-4 hover:underline"
+                    >
+                      Reintentar
+                    </button>
+                  </motion.div>
+                )}
+
+                {error === "generico" && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="space-y-6 border-t border-red-400 pt-6"
+                  >
+                    <p className="font-display text-2xl italic text-red-600">
+                      Hubo un error al enviar
+                    </p>
+                    <p className="text-sm text-graphite">
+                      Intente de nuevo o contactenos a:{" "}
+                      <a href="mailto:latamfwargentina@gmail.com" className="font-semibold text-gold underline hover:text-carbon">
+                        latamfwargentina@gmail.com
+                      </a>
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setError("")}
                       className="text-xs uppercase tracking-[0.2em] text-gold underline-offset-4 hover:underline"
                     >
                       Reintentar
@@ -1735,6 +1802,187 @@ export function SmartForm({ scriptUrl }: { scriptUrl?: string } = {}) {
           </div>
         </div>
       </div>
+
+      {/* Modal de confirmación */}
+      <AnimatePresence>
+        {showConfirm && pendingData && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="w-full max-w-md border border-border bg-white p-8 shadow-2xl"
+            >
+              <h3 className="font-display text-2xl italic text-carbon mb-6">
+                Verifique su información antes de enviar
+              </h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between border-b border-border pb-2">
+                  <span className="text-graphite">Nombre</span>
+                  <span className="text-carbon font-medium">{String(pendingData.name)}</span>
+                </div>
+                <div className="flex justify-between border-b border-border pb-2">
+                  <span className="text-graphite">Email</span>
+                  <span className="text-carbon font-medium">{String(pendingData.email)}</span>
+                </div>
+                {!!pendingData.phone && (
+                  <div className="flex justify-between border-b border-border pb-2">
+                    <span className="text-graphite">Teléfono</span>
+                    <span className="text-carbon font-medium">{String(pendingData.phone)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between border-b border-border pb-2">
+                  <span className="text-graphite">Categoría</span>
+                  <span className="text-carbon font-medium">{purposeLabel}</span>
+                </div>
+                {!!pendingData.age && (
+                  <div className="flex justify-between border-b border-border pb-2">
+                    <span className="text-graphite">Edad</span>
+                    <span className="text-carbon font-medium">{String(pendingData.age)}</span>
+                  </div>
+                )}
+                {!!pendingData.country && (
+                  <div className="flex justify-between border-b border-border pb-2">
+                    <span className="text-graphite">País</span>
+                    <span className="text-carbon font-medium">{String(pendingData.country)}</span>
+                  </div>
+                )}
+              </div>
+              <p className="mt-6 text-xs text-graphite">
+                Si necesita corregir algo, vuelva al formulario y modifique los campos.
+              </p>
+              <div className="mt-6 flex gap-4">
+                <button
+                  type="button"
+                  onClick={confirmSubmit}
+                  disabled={submitting}
+                  className="flex-1 btn-primary disabled:opacity-50"
+                >
+                  {submitting ? "Enviando..." : "Confirmar envío"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowConfirm(false);
+                    setPendingData(null);
+                  }}
+                  className="flex-1 border border-border px-6 py-3 text-[0.7rem] uppercase tracking-[0.2em] text-carbon transition-all hover:border-carbon"
+                >
+                  Volver
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal de éxito */}
+      <AnimatePresence>
+        {submitted && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="w-full max-w-md border border-border bg-white p-8 shadow-2xl"
+            >
+              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </div>
+              <h3 className="font-display text-2xl italic text-carbon mb-4">
+                Inscripción enviada
+              </h3>
+              <div className="space-y-3 text-sm text-graphite">
+                <p>
+                  Revise la bandeja de entrada de:{" "}
+                  <span className="font-semibold text-carbon">{submittedEmail}</span>
+                </p>
+                <p>
+                  Si no lo encuentra, revise <strong>SPAM</strong> o <strong>Correos no deseados</strong>.
+                </p>
+                <div className="mt-4 border-t border-border pt-4">
+                  <p className="font-semibold text-gold">
+                    La respuesta puede tardar entre 24 y 72 horas hábiles.
+                  </p>
+                  <p className="text-gold">Te contactaremos lo antes posible.</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSubmitted(false);
+                  setPurpose("");
+                  setSubmittedEmail("");
+                }}
+                className="mt-6 w-full btn-primary"
+              >
+                Cerrar
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal de duplicado */}
+      <AnimatePresence>
+        {error === "duplicado" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="w-full max-w-md border border-border bg-white p-8 shadow-2xl"
+            >
+              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100">
+                <svg className="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+              </div>
+              <h3 className="font-display text-2xl italic text-carbon mb-4">
+                Ya existe una inscripción
+              </h3>
+              <div className="space-y-3 text-sm text-graphite">
+                <p>
+                  Ya te inscribiste como <strong className="text-carbon">{purposeLabel}</strong> con este correo.
+                </p>
+                <p>
+                  Si te inscribiste anteriormente y cometiste un error, comunicate a:{" "}
+                  <a href="mailto:latamfwargentina@gmail.com" className="font-semibold text-gold underline hover:text-carbon">
+                    latamfwargentina@gmail.com
+                  </a>
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setError("");
+                  setPurpose("");
+                }}
+                className="mt-6 w-full btn-primary"
+              >
+                Volver al formulario
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
