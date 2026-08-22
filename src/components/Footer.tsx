@@ -10,6 +10,8 @@ import guajoLogo from "@/assets/logos/guajo.png";
 import guajoProduccionesLogo from "@/assets/logos/guajo-producciones.png";
 import centralticketLogo from "@/assets/logos/centralticket.png";
 import tampaLogo from "@/assets/logos/tampa.png";
+import clubtixLogo from "@/assets/logos/CLUBTIX.png";
+import virtualcashLogo from "@/assets/logos/VirtualCash.png";
 
 const NAV_LINKS = [
   { to: "/evento", label: "Evento" },
@@ -139,6 +141,16 @@ export function Footer() {
                   alt="Ticketera Oficial"
                   className="h-8 w-auto object-contain brightness-0 invert opacity-60"
                 />
+                <img
+                  src={clubtixLogo}
+                  alt="Ticketera Transmisión en Vivo"
+                  className="h-8 w-auto object-contain brightness-0 invert opacity-60"
+                />
+                <img
+                  src={virtualcashLogo}
+                  alt="Billetera Digital Oficial"
+                  className="h-6 w-auto object-contain brightness-0 invert opacity-60"
+                />
               </div>
             </div>
             <div>
@@ -146,7 +158,7 @@ export function Footer() {
               <div className="mt-6 flex flex-wrap items-center gap-4">
                 <img
                   src={agustinWebLogo}
-                  alt="Agustin Web Studio"
+                  alt="MARTNEZ Digital Studio"
                   className="h-8 w-auto object-contain brightness-0 invert opacity-60"
                 />
                 <img

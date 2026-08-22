@@ -34,6 +34,8 @@ import guajoLogo from "@/assets/logos/guajo.png";
 import guajoProduccionesLogo from "@/assets/logos/guajo-producciones.png";
 import centralticketLogo from "@/assets/logos/centralticket.png";
 import tampaLogo from "@/assets/logos/tampa.png";
+import clubtixLogo from "@/assets/logos/CLUBTIX.png";
+import virtualcashLogo from "@/assets/logos/VirtualCash.png";
 
 /* ---------------------------------------------------- helpers */
 
@@ -2106,6 +2108,8 @@ export function Organizers() {
     { name: "Fiesta Clausura Oficial", logo: tampaLogo },
     { name: "Sede Oficial", logo: guajoLogo },
     { name: "Ticketera Oficial", logo: centralticketLogo },
+    { name: "Ticketera Transmisión en Vivo", logo: clubtixLogo },
+    { name: "Billetera Digital Oficial", logo: virtualcashLogo },
   ];
   return (
     <section className="py-20 lg:py-32">
@@ -2150,17 +2154,20 @@ export function Organizers() {
         <Reveal className="mt-16">
           <SectionLabel number="15" label="Oficiales" />
         </Reveal>
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
-          {oficiales.map((o, i) => (
-            <Reveal key={o.name} delay={i * 0.1}>
-              <div className="border border-border bg-background p-10 text-center lg:p-14">
-                <span className="eyebrow">{o.name}</span>
-                <div className="mt-6 flex h-24 items-center justify-center">
-                  <img src={o.logo} alt={o.name} className="max-h-24 w-auto object-contain" />
+        <div className="mt-16 grid grid-cols-2 items-stretch gap-8 md:grid-cols-6">
+          {oficiales.map((o, i) => {
+            const span = i < 3 ? "md:col-span-2" : "col-span-1 md:col-span-3";
+            return (
+              <Reveal key={o.name} delay={i * 0.1} className={span}>
+                <div className="flex h-full flex-col border border-border bg-background p-6 text-center sm:p-10 lg:p-14">
+                  <span className="eyebrow text-[0.6rem] sm:text-[0.7rem]">{o.name}</span>
+                  <div className="mt-4 flex flex-1 items-center justify-center sm:mt-6">
+                    <img src={o.logo} alt={o.name} className="max-h-16 w-auto object-contain sm:max-h-24" />
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -2209,7 +2216,7 @@ export function CnfwCallout() {
 
 export function Collaborators() {
   const collaborators = [
-    { name: "Agustin Web Studio", role: "Desarrollo Web y Tecnología", logo: agustinWebLogo },
+    { name: "MARTNEZ Digital Studio", role: "Desarrollo Web y Tecnología", logo: agustinWebLogo },
     {
       name: "Fundación Integrar",
       role: "Inclusión y Responsabilidad Social",
